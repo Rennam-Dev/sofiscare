@@ -1,0 +1,644 @@
+{% comment %}
+  Seção: Garantia SofisCare 7 Dias
+  Descrição: Selo de garantia para quebrar objeções e gerar confiança
+  Autor: SofisCare Dev Team
+{% endcomment %}
+
+{%- style -%}
+  /* ============================================
+     GARANTIA - Estilos Base
+     ============================================ */
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* ============================================
+     CARD PRINCIPAL
+     ============================================ */
+
+  .garantia-sofiscare {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  @media screen and (min-width: 750px) {
+    .garantia-sofiscare {
+      padding: 3.5rem 3rem;
+    }
+  }
+
+  .garantia-sofiscare:hover {
+    transform: scale(1.01);
+  }
+
+  /* Variante com borda */
+  .garantia-sofiscare--bordered {
+    border: 2px solid rgba(var(--color-foreground), 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .garantia-sofiscare--bordered:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Variante com fundo destacado */
+  .garantia-sofiscare--highlight {
+    background: linear-gradient(135deg, rgba(var(--color-button), 0.05) 0%, rgba(var(--color-button), 0.02) 100%);
+  }
+
+  /* ============================================
+     BADGE SUPERIOR
+     ============================================ */
+
+  .garantia-sofiscare__badge {
+    display: inline-block;
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    padding: 0.4rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ============================================
+     ÍCONE / SELO
+     ============================================ */
+
+  .garantia-sofiscare__icon-wrapper {
+    margin-bottom: 1.5rem;
+  }
+
+  .garantia-sofiscare__icon {
+    font-size: 4rem;
+    line-height: 1;
+    display: inline-block;
+    animation: pulse-gentle 3s ease-in-out infinite;
+  }
+
+  @media screen and (min-width: 750px) {
+    .garantia-sofiscare__icon {
+      font-size: 5rem;
+    }
+  }
+
+  .garantia-sofiscare__icon-image {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .garantia-sofiscare__icon-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  /* Ícone SVG estilizado */
+  .garantia-sofiscare__shield-svg {
+    width: 80px;
+    height: 80px;
+    color: rgb(var(--color-button));
+  }
+
+  @media screen and (min-width: 750px) {
+    .garantia-sofiscare__shield-svg {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  @keyframes pulse-gentle {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  /* ============================================
+     CONTEÚDO
+     ============================================ */
+
+  .garantia-sofiscare__title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .garantia-sofiscare__days {
+    color: rgb(var(--color-button));
+  }
+
+  .garantia-sofiscare__description {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    line-height: 1.7;
+    opacity: 0.85;
+    max-width: 580px;
+    margin: 0 auto 1.5rem;
+  }
+
+  /* ============================================
+     BULLETS
+     ============================================ */
+
+  .garantia-sofiscare__bullets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 2rem;
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .garantia-sofiscare__bullet {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .garantia-sofiscare__bullet-icon {
+    color: #10b981;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* ============================================
+     CTA
+     ============================================ */
+
+  .garantia-sofiscare__cta {
+    margin-top: 2rem;
+  }
+
+  .garantia-sofiscare__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .garantia-sofiscare__button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(var(--color-button), 0.3);
+  }
+
+  .garantia-sofiscare__button--secondary {
+    background: transparent;
+    border: 2px solid rgb(var(--color-button));
+    color: rgb(var(--color-button));
+  }
+
+  .garantia-sofiscare__button--secondary:hover {
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+  }
+
+  /* ============================================
+     DECORAÇÃO
+     ============================================ */
+
+  .garantia-sofiscare__decoration {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #10b981;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  }
+
+  @media screen and (max-width: 749px) {
+    .garantia-sofiscare__decoration {
+      width: 50px;
+      height: 50px;
+      font-size: 1.25rem;
+      top: -8px;
+      right: -8px;
+    }
+  }
+
+  /* ============================================
+     SELO DE CONFIANÇA INFERIOR
+     ============================================ */
+
+  .garantia-sofiscare__trust {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(var(--color-foreground), 0.1);
+    opacity: 0.7;
+    font-size: 0.85rem;
+  }
+
+  .garantia-sofiscare__trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* ============================================
+     ANIMAÇÕES
+     ============================================ */
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .garantia-sofiscare.scroll-trigger.animate--slide-in {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+{%- endstyle -%}
+
+{%- comment -%} Markup Principal {%- endcomment -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding isolate">
+    <div
+      class="garantia-sofiscare{% if section.settings.show_border %} garantia-sofiscare--bordered{% endif %}{% if section.settings.highlight_box %} garantia-sofiscare--highlight{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    >
+
+      {%- comment -%} Decoração (Selo 7) {%- endcomment -%}
+      {%- if section.settings.show_days_badge -%}
+        <div class="garantia-sofiscare__decoration">7</div>
+      {%- endif -%}
+
+      {%- comment -%} Badge Superior {%- endcomment -%}
+      {%- if section.settings.badge_text != blank -%}
+        <span class="garantia-sofiscare__badge">{{ section.settings.badge_text }}</span>
+      {%- endif -%}
+
+      {%- comment -%} Ícone / Selo {%- endcomment -%}
+      <div class="garantia-sofiscare__icon-wrapper">
+        {%- if section.settings.icon_image != blank -%}
+          <div class="garantia-sofiscare__icon-image">
+            {{ section.settings.icon_image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+          </div>
+        {%- elsif section.settings.show_shield_svg -%}
+          {%- comment -%} SVG de Escudo Estilizado {%- endcomment -%}
+          <svg class="garantia-sofiscare__shield-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+          </svg>
+        {%- elsif section.settings.icon_emoji != blank -%}
+          <span class="garantia-sofiscare__icon">{{ section.settings.icon_emoji }}</span>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Título {%- endcomment -%}
+      {%- if section.settings.title != blank -%}
+        <h2 class="garantia-sofiscare__title {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
+        </h2>
+      {%- endif -%}
+
+      {%- comment -%} Descrição {%- endcomment -%}
+      {%- if section.settings.description != blank -%}
+        <p class="garantia-sofiscare__description">
+          {{ section.settings.description }}
+        </p>
+      {%- endif -%}
+
+      {%- comment -%} Bullets {%- endcomment -%}
+      {%- if section.settings.show_bullets and section.blocks.size > 0 -%}
+        <ul class="garantia-sofiscare__bullets">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'bullet' -%}
+              <li class="garantia-sofiscare__bullet" {{ block.shopify_attributes }}>
+                <span class="garantia-sofiscare__bullet-icon">
+                  {%- if block.settings.icon != blank -%}
+                    {{ block.settings.icon }}
+                  {%- else -%}
+                    ✓
+                  {%- endif -%}
+                </span>
+                <span>{{ block.settings.text }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- comment -%} CTA {%- endcomment -%}
+      {%- if section.settings.button_label != blank -%}
+        <div class="garantia-sofiscare__cta">
+          <a
+            class="garantia-sofiscare__button{% if section.settings.button_style == 'secondary' %} garantia-sofiscare__button--secondary{% endif %}"
+            {% if section.settings.button_link == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ section.settings.button_link }}"
+            {% endif %}
+          >
+            {{ section.settings.button_label }}
+          </a>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Selos de Confiança Inferiores {%- endcomment -%}
+      {%- if section.settings.show_trust_badges -%}
+        <div class="garantia-sofiscare__trust">
+          <span class="garantia-sofiscare__trust-item">
+            <span>🔒</span>
+            <span>Pagamento seguro</span>
+          </span>
+          <span class="garantia-sofiscare__trust-item">
+            <span>📦</span>
+            <span>Envio rastreável</span>
+          </span>
+          <span class="garantia-sofiscare__trust-item">
+            <span>💬</span>
+            <span>Suporte humano</span>
+          </span>
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Garantia SofisCare",
+  "tag": "section",
+  "class": "section section-garantia",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Conteúdo"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge superior",
+      "default": "Compra Segura"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Título",
+      "default": "Garantia SofisCare <strong>7 Dias</strong>"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Descrição",
+      "default": "Se você não perceber melhora real na hidratação, maciez e no toque dos seus pés dentro de 7 dias, devolvemos 100% do seu dinheiro — sem burocracia e sem perguntas."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Tamanho do título",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Pequeno"
+        },
+        {
+          "value": "h1",
+          "label": "Médio"
+        },
+        {
+          "value": "h0",
+          "label": "Grande"
+        }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "header",
+      "content": "Ícone / Selo"
+    },
+    {
+      "type": "text",
+      "id": "icon_emoji",
+      "label": "Ícone (emoji)",
+      "default": "🛡️",
+      "info": "Ex: 🛡️, ⭐, 💯, 🔒"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shield_svg",
+      "label": "Usar ícone SVG de escudo",
+      "default": true,
+      "info": "Substitui o emoji por um escudo estilizado"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_image",
+      "label": "Imagem personalizada (opcional)",
+      "info": "Substitui emoji e SVG se preenchido"
+    },
+    {
+      "type": "header",
+      "content": "Bullets"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bullets",
+      "label": "Exibir lista de benefícios",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Botão (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto do botão"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link do botão"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Estilo do botão",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primário (sólido)"
+        },
+        {
+          "value": "secondary",
+          "label": "Secundário (outline)"
+        }
+      ],
+      "default": "primary"
+    },
+    {
+      "type": "header",
+      "content": "Aparência"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "Exibir borda e sombra",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "highlight_box",
+      "label": "Adicionar fundo destacado",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_days_badge",
+      "label": "Exibir selo '7' decorativo",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_badges",
+      "label": "Exibir selos de confiança inferiores",
+      "default": false
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espaçamento superior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espaçamento inferior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Benefício",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Ícone (opcional)",
+          "default": "✓",
+          "info": "Ex: ✓, ✔️, ⭐"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Benefício da garantia"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Garantia SofisCare",
+      "settings": {
+        "badge_text": "Compra Segura",
+        "title": "Garantia SofisCare <strong>7 Dias</strong>",
+        "description": "Se você não perceber melhora real na hidratação, maciez e no toque dos seus pés dentro de 7 dias, devolvemos 100% do seu dinheiro — sem burocracia e sem perguntas.",
+        "heading_size": "h1",
+        "icon_emoji": "🛡️",
+        "show_shield_svg": true,
+        "show_bullets": true,
+        "show_border": true,
+        "highlight_box": false,
+        "show_days_badge": true,
+        "show_trust_badges": false,
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": [
+        {
+          "type": "bullet",
+          "settings": {
+            "icon": "✓",
+            "text": "Sem risco"
+          }
+        },
+        {
+          "type": "bullet",
+          "settings": {
+            "icon": "✓",
+            "text": "Processo simples"
+          }
+        },
+        {
+          "type": "bullet",
+          "settings": {
+            "icon": "✓",
+            "text": "Atendimento humano"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
