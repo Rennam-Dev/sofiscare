@@ -39,17 +39,3 @@ O tema está localizado na raiz do repositório e segue a estrutura padrão:
 
 📄 Licença
 Uso interno SofisCare.
-
-yaml
-Copiar código
-
----
-
-# ✅ E depois disso?
-
-Você só roda:
-
-```bash
-git add README.md
-git commit -m "docs: add basic readme"
-git push
