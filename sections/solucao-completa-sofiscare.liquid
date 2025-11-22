@@ -1,0 +1,472 @@
+{% comment %}
+  Seção: Solução Completa SofisCare
+  Descrição: Apresenta o combo Renova Pé + Hidraseda com 5 benefícios em cards
+  Autor: SofisCare Dev Team
+{% endcomment %}
+
+{%- style -%}
+  /* ============================================
+     SOLUÇÃO COMPLETA - Estilos Base
+     ============================================ */
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* ============================================
+     HEADER - Título e Descrição
+     ============================================ */
+
+  .solucao-completa__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+
+  .solucao-completa__title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .solucao-completa__description {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.7;
+    opacity: 0.85;
+  }
+
+  /* ============================================
+     GRID DE CARDS
+     ============================================ */
+
+  .solucao-completa__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media screen and (min-width: 550px) {
+    .solucao-completa__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .solucao-completa__grid {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  /* ============================================
+     CARDS INDIVIDUAIS
+     ============================================ */
+
+  .solucao-completa__card {
+    background: var(--gradient-background);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .solucao-completa__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgb(var(--color-button));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .solucao-completa__card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  .solucao-completa__card:hover::before {
+    opacity: 1;
+  }
+
+  /* ============================================
+     ÍCONE DO CARD
+     ============================================ */
+
+  .solucao-completa__icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+    line-height: 1;
+  }
+
+  .solucao-completa__icon-image {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(var(--color-button), 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .solucao-completa__icon-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ============================================
+     CONTEÚDO DO CARD
+     ============================================ */
+
+  .solucao-completa__card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .solucao-completa__card-text {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.5;
+  }
+
+  /* ============================================
+     CTA OPCIONAL
+     ============================================ */
+
+  .solucao-completa__cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .solucao-completa__cta .button {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+  }
+
+  /* ============================================
+     VARIANTE: LAYOUT ALTERNATIVO
+     ============================================ */
+
+  .solucao-completa--highlight .solucao-completa__card:nth-child(odd) {
+    background: rgba(var(--color-button), 0.05);
+  }
+
+  /* ============================================
+     ANIMAÇÕES
+     ============================================ */
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .solucao-completa__card.animate--slide-in {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+{%- endstyle -%}
+
+{%- comment -%} Markup Principal {%- endcomment -%}
+<div class="color-{{ section.settings.color_scheme }} gradient{% if section.settings.highlight_alternate %} solucao-completa--highlight{% endif %}">
+  <div
+    class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+  >
+
+    {%- comment -%} Header: Título e Descrição {%- endcomment -%}
+    {%- if section.settings.title != blank or section.settings.description != blank -%}
+      <div class="solucao-completa__header">
+        {%- if section.settings.title != blank -%}
+          <h2 class="solucao-completa__title inline-richtext {{ section.settings.heading_size }}">
+            {{ section.settings.title }}
+          </h2>
+        {%- endif -%}
+
+        {%- if section.settings.description != blank -%}
+          <p class="solucao-completa__description">
+            {{ section.settings.description }}
+          </p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Grid de Cards {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div
+        class="solucao-completa__grid"
+        {% if settings.animations_reveal_on_scroll %}
+          data-cascade
+        {% endif %}
+      >
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'benefit_card' -%}
+            <div
+              class="solucao-completa__card{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {{ block.shopify_attributes }}
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+              {% endif %}
+            >
+              {%- comment -%} Ícone ou Imagem {%- endcomment -%}
+              {%- if block.settings.image != blank -%}
+                <div class="solucao-completa__icon-image">
+                  {{ block.settings.image | image_url: width: 128 | image_tag: loading: 'lazy' }}
+                </div>
+              {%- elsif block.settings.icon != blank -%}
+                <span class="solucao-completa__icon">{{ block.settings.icon }}</span>
+              {%- endif -%}
+
+              {%- comment -%} Título do Card {%- endcomment -%}
+              {%- if block.settings.title != blank -%}
+                <h3 class="solucao-completa__card-title">{{ block.settings.title }}</h3>
+              {%- endif -%}
+
+              {%- comment -%} Descrição do Card (opcional) {%- endcomment -%}
+              {%- if block.settings.text != blank -%}
+                <p class="solucao-completa__card-text">{{ block.settings.text }}</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Botão CTA Opcional {%- endcomment -%}
+    {%- if section.settings.button_label != blank -%}
+      <div class="solucao-completa__cta">
+        <a
+          class="button button--primary"
+          {% if section.settings.button_link == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href="{{ section.settings.button_link }}"
+          {% endif %}
+        >
+          {{ section.settings.button_label | escape }}
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Solução Completa SofisCare",
+  "tag": "section",
+  "class": "section section-solucao-completa",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Conteúdo"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Título",
+      "default": "Seu tratamento começa aqui."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Descrição",
+      "default": "O combo SofisCare combina o poder do Renova Pé, que remove impurezas e células mortas, com o Hidraseda, que amacia, nutre e suaviza rachaduras — criando uma rotina simples, rápida e extremamente eficaz."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Tamanho do título",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Pequeno"
+        },
+        {
+          "value": "h1",
+          "label": "Médio"
+        },
+        {
+          "value": "h0",
+          "label": "Grande"
+        }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Colunas no desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "highlight_alternate",
+      "label": "Destacar cards alternados",
+      "default": false,
+      "info": "Aplica fundo alternado nos cards ímpares"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Botão (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto do botão"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link do botão"
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espaçamento superior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espaçamento inferior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit_card",
+      "name": "Card de Benefício",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem (opcional)",
+          "info": "Substitui o ícone se preenchido"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Ícone/Emoji",
+          "default": "✨",
+          "info": "Ex: ✨, 🧼, 💧, 💪, 🔬"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título do card",
+          "default": "Benefício"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Descrição (opcional)",
+          "info": "Texto adicional abaixo do título"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Solução Completa SofisCare",
+      "settings": {
+        "title": "Seu tratamento começa aqui.",
+        "description": "O combo SofisCare combina o poder do Renova Pé, que remove impurezas e células mortas, com o Hidraseda, que amacia, nutre e suaviza rachaduras — criando uma rotina simples, rápida e extremamente eficaz.",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "highlight_alternate": false,
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": [
+        {
+          "type": "benefit_card",
+          "settings": {
+            "icon": "✨",
+            "title": "Pés lisos e sedosos em até 3 dias"
+          }
+        },
+        {
+          "type": "benefit_card",
+          "settings": {
+            "icon": "🧼",
+            "title": "Diminui aspereza e remove pele morta"
+          }
+        },
+        {
+          "type": "benefit_card",
+          "settings": {
+            "icon": "💧",
+            "title": "Hidratação intensa e toque sedoso"
+          }
+        },
+        {
+          "type": "benefit_card",
+          "settings": {
+            "icon": "💪",
+            "title": "Suaviza rachaduras profundas"
+          }
+        },
+        {
+          "type": "benefit_card",
+          "settings": {
+            "icon": "🔬",
+            "title": "Fórmula profissional, ideal para podólogas"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
