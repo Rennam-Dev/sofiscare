@@ -1,0 +1,329 @@
+{{ 'section-multicolumn.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .porque__title-wrapper {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .porque__subtitle {
+    margin-top: 0.5rem;
+    opacity: 0.8;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .porque__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .porque__container {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+    }
+  }
+
+  .porque__card {
+    background: var(--gradient-background);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .porque__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .porque__icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .porque__card-image {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .porque__card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .porque__card-titulo {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .porque__card-descricao {
+    opacity: 0.8;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .porque__cta {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+
+    {%- unless section.settings.title == blank -%}
+      <div class="porque__title-wrapper">
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
+        </h2>
+        {%- unless section.settings.subtitle == blank -%}
+          <p class="porque__subtitle">{{ section.settings.subtitle }}</p>
+        {%- endunless -%}
+      </div>
+    {%- endunless -%}
+
+    <div class="porque__container"
+      {% if settings.animations_reveal_on_scroll %}
+        data-cascade
+      {% endif %}
+    >
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'card' -%}
+          <div
+            class="porque__card{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {{ block.shopify_attributes }}
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ forloop.index }};"
+            {% endif %}
+          >
+            {%- if block.settings.image != blank -%}
+              <div class="porque__card-image">
+                {{ block.settings.image | image_url: width: 160 | image_tag: loading: 'lazy' }}
+              </div>
+            {%- elsif block.settings.icon != blank -%}
+              <span class="porque__icon">{{ block.settings.icon }}</span>
+            {%- endif -%}
+
+            {%- unless block.settings.titulo == blank -%}
+              <h3 class="porque__card-titulo">{{ block.settings.titulo }}</h3>
+            {%- endunless -%}
+
+            {%- unless block.settings.descricao == blank -%}
+              <p class="porque__card-descricao">{{ block.settings.descricao }}</p>
+            {%- endunless -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="porque__cta">
+        <a
+          class="button button--primary"
+          {% if section.settings.button_link == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href="{{ section.settings.button_link }}"
+          {% endif %}
+        >
+          {{ section.settings.button_label | escape }}
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Por Que Funciona",
+  "class": "section",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Por que funciona?",
+      "label": "Título"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo (opcional)"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Pequeno"
+        },
+        {
+          "value": "h1",
+          "label": "Médio"
+        },
+        {
+          "value": "h0",
+          "label": "Grande"
+        }
+      ],
+      "default": "h1",
+      "label": "Tamanho do título"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "Colunas no desktop"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Botão (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto do botão"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link do botão"
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espaçamento superior",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espaçamento inferior",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Ícone/Emoji",
+          "default": "✨",
+          "info": "Ex: 🌱, 🔬, ⚡, ❤️"
+        },
+        {
+          "type": "text",
+          "id": "titulo",
+          "default": "Título do card",
+          "label": "Título"
+        },
+        {
+          "type": "textarea",
+          "id": "descricao",
+          "default": "Descrição do benefício ou diferencial.",
+          "label": "Descrição"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Por Que Funciona",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "icon": "🌱",
+            "titulo": "Fórmulas profissionais",
+            "descricao": "Desenvolvido com ingredientes de alta qualidade usados por especialistas."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "🔬",
+            "titulo": "Atua nas camadas da pele",
+            "descricao": "Penetração profunda para resultados visíveis e duradouros."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "⚡",
+            "titulo": "Resultados rápidos",
+            "descricao": "Melhora visível em apenas 3 dias de uso contínuo."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "❤️",
+            "titulo": "Rotina simples",
+            "descricao": "Apenas 2 passos para pés renovados — fácil de manter."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

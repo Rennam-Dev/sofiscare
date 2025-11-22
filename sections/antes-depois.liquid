@@ -1,0 +1,259 @@
+{{ 'section-multicolumn.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .antes-depois__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .antes-depois__item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .antes-depois__image-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .antes-depois__image {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+
+  .antes-depois__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .antes-depois__label {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .antes-depois__image--antes .antes-depois__label {
+    background: #dc3545;
+  }
+
+  .antes-depois__image--depois .antes-depois__label {
+    background: #28a745;
+  }
+
+  .antes-depois__caption {
+    padding: 1rem;
+    text-align: center;
+    background: var(--gradient-background);
+  }
+
+  .antes-depois__title-wrapper {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .antes-depois__subtitle {
+    margin-top: 0.5rem;
+    opacity: 0.8;
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+
+    {%- unless section.settings.title == blank -%}
+      <div class="antes-depois__title-wrapper">
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
+        </h2>
+        {%- unless section.settings.subtitle == blank -%}
+          <p class="antes-depois__subtitle">{{ section.settings.subtitle }}</p>
+        {%- endunless -%}
+      </div>
+    {%- endunless -%}
+
+    <div class="antes-depois__container"
+      {% if settings.animations_reveal_on_scroll %}
+        data-cascade
+      {% endif %}
+    >
+      {%- for block in section.blocks -%}
+        <div
+          class="antes-depois__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {{ block.shopify_attributes }}
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+          {% endif %}
+        >
+          <div class="antes-depois__image-wrapper">
+            <div class="antes-depois__image antes-depois__image--antes">
+              {%- if block.settings.image_antes != blank -%}
+                {{ block.settings.image_antes | image_url: width: 600 | image_tag: loading: 'lazy', class: 'motion-reduce' }}
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+              <span class="antes-depois__label">Antes</span>
+            </div>
+            <div class="antes-depois__image antes-depois__image--depois">
+              {%- if block.settings.image_depois != blank -%}
+                {{ block.settings.image_depois | image_url: width: 600 | image_tag: loading: 'lazy', class: 'motion-reduce' }}
+              {%- else -%}
+                {{ 'product-2' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+              <span class="antes-depois__label">Depois</span>
+            </div>
+          </div>
+          {%- unless block.settings.caption == blank -%}
+            <div class="antes-depois__caption">
+              <p>{{ block.settings.caption }}</p>
+            </div>
+          {%- endunless -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Antes e Depois",
+  "class": "section",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Transformações reais com SofisCare",
+      "label": "Título"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "default": "Resultados começam a aparecer nos primeiros dias de uso.",
+      "label": "Subtítulo"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Pequeno"
+        },
+        {
+          "value": "h1",
+          "label": "Médio"
+        },
+        {
+          "value": "h0",
+          "label": "Grande"
+        }
+      ],
+      "default": "h1",
+      "label": "Tamanho do título"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espaçamento superior",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espaçamento inferior",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comparacao",
+      "name": "Comparação",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_antes",
+          "label": "Imagem ANTES"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_depois",
+          "label": "Imagem DEPOIS"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Legenda (opcional)",
+          "default": "Resultado após 7 dias de uso"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Antes e Depois",
+      "blocks": [
+        {
+          "type": "comparacao"
+        },
+        {
+          "type": "comparacao"
+        },
+        {
+          "type": "comparacao"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

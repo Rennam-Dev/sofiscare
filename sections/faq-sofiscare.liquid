@@ -1,0 +1,633 @@
+{% comment %}
+  Seção: FAQ SofisCare
+  Descrição: Perguntas frequentes com accordions animados
+  Autor: SofisCare Dev Team
+{% endcomment %}
+
+{%- style -%}
+  /* ============================================
+     FAQ - Estilos Base
+     ============================================ */
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* ============================================
+     CONTAINER PRINCIPAL
+     ============================================ */
+
+  .faq-sofiscare {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-sofiscare--highlight {
+    background: rgba(var(--color-foreground), 0.03);
+    border-radius: 20px;
+    padding: 2rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .faq-sofiscare--highlight {
+      padding: 3rem;
+    }
+  }
+
+  /* ============================================
+     HEADER - Título e Subtítulo
+     ============================================ */
+
+  .faq-sofiscare__header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .faq-sofiscare__title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+
+  .faq-sofiscare__subtitle {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.6;
+    opacity: 0.75;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ============================================
+     LISTA DE ACCORDIONS
+     ============================================ */
+
+  .faq-sofiscare__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ============================================
+     ACCORDION ITEM
+     ============================================ */
+
+  .faq-sofiscare__item {
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
+  }
+
+  .faq-sofiscare__item:first-child {
+    border-top: 1px solid rgba(var(--color-foreground), 0.1);
+  }
+
+  .faq-sofiscare--no-divider .faq-sofiscare__item,
+  .faq-sofiscare--no-divider .faq-sofiscare__item:first-child {
+    border: none;
+    margin-bottom: 0.5rem;
+    background: rgba(var(--color-foreground), 0.02);
+    border-radius: 12px;
+  }
+
+  /* ============================================
+     ACCORDION TRIGGER (Pergunta)
+     ============================================ */
+
+  .faq-sofiscare__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: rgb(var(--color-foreground));
+    transition: color 0.2s ease;
+  }
+
+  .faq-sofiscare--no-divider .faq-sofiscare__trigger {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .faq-sofiscare__trigger:hover {
+    color: rgb(var(--color-button));
+  }
+
+  .faq-sofiscare__trigger:focus {
+    outline: none;
+  }
+
+  .faq-sofiscare__trigger:focus-visible {
+    outline: 2px solid rgb(var(--color-button));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* ============================================
+     ÍCONE DO ACCORDION
+     ============================================ */
+
+  .faq-sofiscare__icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .faq-sofiscare__icon::before,
+  .faq-sofiscare__icon::after {
+    content: '';
+    position: absolute;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .faq-sofiscare__icon::before {
+    width: 14px;
+    height: 2px;
+  }
+
+  .faq-sofiscare__icon::after {
+    width: 2px;
+    height: 14px;
+  }
+
+  /* Estado aberto */
+  .faq-sofiscare__item.is-open .faq-sofiscare__icon::after {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+
+  .faq-sofiscare__item.is-open .faq-sofiscare__trigger {
+    color: rgb(var(--color-button));
+  }
+
+  /* ============================================
+     ACCORDION CONTENT (Resposta)
+     ============================================ */
+
+  .faq-sofiscare__content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease, opacity 0.35s ease;
+    opacity: 0;
+  }
+
+  .faq-sofiscare__item.is-open .faq-sofiscare__content {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .faq-sofiscare__content-inner {
+    overflow: hidden;
+  }
+
+  .faq-sofiscare__answer {
+    padding: 0 0 1.5rem 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(var(--color-foreground), 0.8);
+  }
+
+  .faq-sofiscare--no-divider .faq-sofiscare__answer {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+
+  .faq-sofiscare__answer p {
+    margin: 0;
+  }
+
+  .faq-sofiscare__answer p + p {
+    margin-top: 0.75rem;
+  }
+
+  .faq-sofiscare__answer ul,
+  .faq-sofiscare__answer ol {
+    margin: 0.5rem 0;
+    padding-left: 1.25rem;
+  }
+
+  .faq-sofiscare__answer li {
+    margin-bottom: 0.25rem;
+  }
+
+  /* ============================================
+     CTA OPCIONAL
+     ============================================ */
+
+  .faq-sofiscare__cta {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(var(--color-foreground), 0.1);
+  }
+
+  .faq-sofiscare__cta-text {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+
+  .faq-sofiscare__cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    padding: 0.875rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .faq-sofiscare__cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--color-button), 0.3);
+  }
+
+  /* ============================================
+     ANIMAÇÕES
+     ============================================ */
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .faq-sofiscare__item.scroll-trigger.animate--slide-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+{%- endstyle -%}
+
+{%- comment -%} Markup Principal {%- endcomment -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div
+    class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+  >
+    <div class="faq-sofiscare{% if section.settings.highlight_box %} faq-sofiscare--highlight{% endif %}{% unless section.settings.show_divider %} faq-sofiscare--no-divider{% endunless %}">
+
+      {%- comment -%} Header: Título e Subtítulo {%- endcomment -%}
+      {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
+        <div class="faq-sofiscare__header">
+          {%- if section.settings.title != blank -%}
+            <h2 class="faq-sofiscare__title inline-richtext {{ section.settings.heading_size }}">
+              {{ section.settings.title }}
+            </h2>
+          {%- endif -%}
+
+          {%- if section.settings.subtitle != blank -%}
+            <p class="faq-sofiscare__subtitle">
+              {{ section.settings.subtitle }}
+            </p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Lista de Accordions {%- endcomment -%}
+      {%- if section.blocks.size > 0 -%}
+        <div
+          class="faq-sofiscare__list"
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+          {% endif %}
+        >
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'question' -%}
+              <div
+                class="faq-sofiscare__item{% if section.settings.open_first and forloop.first %} is-open{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {%- comment -%} Pergunta (Trigger) {%- endcomment -%}
+                <button
+                  type="button"
+                  class="faq-sofiscare__trigger"
+                  aria-expanded="{% if section.settings.open_first and forloop.first %}true{% else %}false{% endif %}"
+                  aria-controls="faq-content-{{ section.id }}-{{ forloop.index }}"
+                >
+                  <span>{{ block.settings.question }}</span>
+                  <span class="faq-sofiscare__icon" aria-hidden="true"></span>
+                </button>
+
+                {%- comment -%} Resposta (Content) {%- endcomment -%}
+                <div
+                  class="faq-sofiscare__content"
+                  id="faq-content-{{ section.id }}-{{ forloop.index }}"
+                  role="region"
+                >
+                  <div class="faq-sofiscare__content-inner">
+                    <div class="faq-sofiscare__answer rte">
+                      {{ block.settings.answer }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} CTA Opcional {%- endcomment -%}
+      {%- if section.settings.cta_text != blank or section.settings.cta_label != blank -%}
+        <div class="faq-sofiscare__cta">
+          {%- if section.settings.cta_text != blank -%}
+            <p class="faq-sofiscare__cta-text">{{ section.settings.cta_text }}</p>
+          {%- endif -%}
+
+          {%- if section.settings.cta_label != blank -%}
+            <a
+              class="faq-sofiscare__cta-button"
+              {% if section.settings.cta_link == blank %}
+                role="link" aria-disabled="true"
+              {% else %}
+                href="{{ section.settings.cta_link }}"
+              {% endif %}
+            >
+              {{ section.settings.cta_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</div>
+
+{%- comment -%} Script do Accordion {%- endcomment -%}
+<script>
+  (function() {
+    const section = document.querySelector('#shopify-section-{{ section.id }}');
+    if (!section) return;
+
+    const items = section.querySelectorAll('.faq-sofiscare__item');
+
+    items.forEach(item => {
+      const trigger = item.querySelector('.faq-sofiscare__trigger');
+
+      trigger.addEventListener('click', function() {
+        const isOpen = item.classList.contains('is-open');
+        const allowMultiple = {{ section.settings.allow_multiple | json }};
+
+        // Fecha outros se não permitir múltiplos
+        if (!allowMultiple && !isOpen) {
+          items.forEach(otherItem => {
+            if (otherItem !== item && otherItem.classList.contains('is-open')) {
+              otherItem.classList.remove('is-open');
+              otherItem.querySelector('.faq-sofiscare__trigger').setAttribute('aria-expanded', 'false');
+            }
+          });
+        }
+
+        // Toggle estado atual
+        item.classList.toggle('is-open');
+        trigger.setAttribute('aria-expanded', !isOpen);
+      });
+
+      // Suporte a teclado
+      trigger.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          trigger.click();
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "FAQ SofisCare",
+  "tag": "section",
+  "class": "section section-faq",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Conteúdo"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Título",
+      "default": "Perguntas Frequentes"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Tire suas dúvidas sobre o tratamento SofisCare."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Tamanho do título",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Pequeno"
+        },
+        {
+          "value": "h1",
+          "label": "Médio"
+        },
+        {
+          "value": "h0",
+          "label": "Grande"
+        }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "header",
+      "content": "Comportamento"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first",
+      "label": "Abrir primeira pergunta automaticamente",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "allow_multiple",
+      "label": "Permitir múltiplas perguntas abertas",
+      "default": false,
+      "info": "Se desativado, apenas uma pergunta fica aberta por vez"
+    },
+    {
+      "type": "header",
+      "content": "Aparência"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Exibir linhas divisórias",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "highlight_box",
+      "label": "Adicionar fundo destacado",
+      "default": false,
+      "info": "Aplica um fundo suave ao redor da FAQ"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "CTA (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto acima do botão",
+      "default": "Ainda tem dúvidas?"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texto do botão",
+      "default": "Fale conosco"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Link do botão"
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espaçamento superior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espaçamento inferior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Pergunta",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pergunta",
+          "default": "Sua pergunta aqui?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Resposta",
+          "default": "<p>Escreva aqui a resposta para esta pergunta.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ SofisCare",
+      "settings": {
+        "title": "Perguntas Frequentes",
+        "subtitle": "Tire suas dúvidas sobre o tratamento SofisCare.",
+        "heading_size": "h1",
+        "open_first": true,
+        "allow_multiple": false,
+        "show_divider": true,
+        "highlight_box": false,
+        "cta_text": "Ainda tem dúvidas?",
+        "cta_label": "Fale conosco",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "question": "Em quanto tempo vejo resultado?",
+            "answer": "<p>A maioria das pessoas percebe melhora em <strong>3 dias</strong>, com resultado completo em até <strong>7 dias</strong>.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "O kit é melhor que comprar separado?",
+            "answer": "<p>Sim. O esfoliante <strong>Renova Pé</strong> aumenta a absorção do creme <strong>Hidraseda</strong>, entregando resultado mais rápido e eficiente.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Quantas vezes por semana devo usar?",
+            "answer": "<p><strong>Renova Pé:</strong> 2 a 3 vezes por semana.</p><p><strong>Hidraseda:</strong> todos os dias, preferencialmente à noite.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Ajuda em rachaduras profundas?",
+            "answer": "<p>Sim, suaviza a aspereza e melhora significativamente a textura da pele com uso contínuo. Para rachaduras muito profundas, recomendamos também consultar um podólogo.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Gestantes podem usar?",
+            "answer": "<p>Recomendamos consultar um médico antes de usar durante a gestação. A composição é suave, mas cada gravidez é única.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,531 @@
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .hero-sofiscare {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 990px) {
+    .hero-sofiscare {
+      flex-direction: row;
+      min-height: 90vh;
+    }
+
+    .hero-sofiscare--reverse {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .hero-sofiscare__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .hero-sofiscare__content {
+      padding: 4rem 3rem;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .hero-sofiscare__content {
+      padding: 4rem;
+      text-align: {{ section.settings.desktop_text_alignment }};
+      max-width: 50%;
+    }
+
+    .hero-sofiscare__content--left {
+      align-items: flex-start;
+    }
+
+    .hero-sofiscare__content--center {
+      align-items: center;
+    }
+
+    .hero-sofiscare__content--right {
+      align-items: flex-end;
+    }
+  }
+
+  .hero-sofiscare__badge {
+    display: inline-block;
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-sofiscare__headline {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-sofiscare__headline-highlight {
+    color: rgb(var(--color-button));
+  }
+
+  .hero-sofiscare__subheadline {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.6;
+    opacity: 0.85;
+    margin-bottom: 2rem;
+    max-width: 540px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .hero-sofiscare__content--center .hero-sofiscare__subheadline {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .hero-sofiscare__ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  @media screen and (min-width: 450px) {
+    .hero-sofiscare__ctas {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .hero-sofiscare__ctas {
+      justify-content: {{ section.settings.desktop_text_alignment }};
+    }
+  }
+
+  .hero-sofiscare__cta {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .hero-sofiscare__cta--primary {
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+  }
+
+  .hero-sofiscare__cta--primary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--color-button), 0.3);
+  }
+
+  .hero-sofiscare__cta--secondary {
+    background: transparent;
+    border: 2px solid currentColor;
+    color: inherit;
+  }
+
+  .hero-sofiscare__cta--secondary:hover {
+    background: rgba(var(--color-foreground), 0.05);
+  }
+
+  .hero-sofiscare__media {
+    flex: 1;
+    position: relative;
+    min-height: 300px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .hero-sofiscare__media {
+      min-height: auto;
+      max-width: 50%;
+    }
+  }
+
+  .hero-sofiscare__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-sofiscare__image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--color-background), 0.1) 0%,
+      rgba(var(--color-background), 0) 30%
+    );
+    pointer-events: none;
+  }
+
+  @media screen and (min-width: 990px) {
+    .hero-sofiscare__image-overlay {
+      background: linear-gradient(
+        to right,
+        rgba(var(--color-background), 0.15) 0%,
+        rgba(var(--color-background), 0) 20%
+      );
+    }
+
+    .hero-sofiscare--reverse .hero-sofiscare__image-overlay {
+      background: linear-gradient(
+        to left,
+        rgba(var(--color-background), 0.15) 0%,
+        rgba(var(--color-background), 0) 20%
+      );
+    }
+  }
+
+  .hero-sofiscare__trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    justify-content: center;
+    opacity: 0.7;
+    font-size: 0.875rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .hero-sofiscare__trust {
+      justify-content: {{ section.settings.desktop_text_alignment }};
+    }
+  }
+
+  .hero-sofiscare__trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hero-sofiscare__trust-icon {
+    font-size: 1.25rem;
+  }
+
+  /* Fullwidth variant */
+  .hero-sofiscare--fullwidth {
+    position: relative;
+  }
+
+  .hero-sofiscare--fullwidth .hero-sofiscare__media {
+    position: absolute;
+    inset: 0;
+    max-width: none;
+  }
+
+  .hero-sofiscare--fullwidth .hero-sofiscare__content {
+    position: relative;
+    z-index: 1;
+    max-width: none;
+    background: rgba(var(--color-background), {{ section.settings.overlay_opacity | divided_by: 100.0 }});
+  }
+
+  @media screen and (min-width: 990px) {
+    .hero-sofiscare--fullwidth .hero-sofiscare__content {
+      max-width: 600px;
+      margin: 0 auto;
+      background: transparent;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  class="hero-sofiscare color-{{ section.settings.color_scheme }} gradient{% if section.settings.layout == 'image_first' %} hero-sofiscare--reverse{% endif %}{% if section.settings.layout == 'fullwidth' %} hero-sofiscare--fullwidth{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  id="Hero-{{ section.id }}"
+>
+  <div class="hero-sofiscare__content hero-sofiscare__content--{{ section.settings.desktop_text_alignment }}">
+    {%- if section.settings.badge != blank -%}
+      <span class="hero-sofiscare__badge">{{ section.settings.badge }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.headline != blank -%}
+      <h1 class="hero-sofiscare__headline">
+        {{ section.settings.headline }}
+      </h1>
+    {%- endif -%}
+
+    {%- if section.settings.subheadline != blank -%}
+      <p class="hero-sofiscare__subheadline">
+        {{ section.settings.subheadline }}
+      </p>
+    {%- endif -%}
+
+    <div class="hero-sofiscare__ctas">
+      {%- if section.settings.cta_primary_text != blank -%}
+        <a
+          href="{{ section.settings.cta_primary_link }}"
+          class="hero-sofiscare__cta hero-sofiscare__cta--primary"
+          {% if section.settings.cta_primary_link == blank %}role="link" aria-disabled="true"{% endif %}
+        >
+          {{ section.settings.cta_primary_text }}
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.cta_secondary_text != blank -%}
+        <a
+          href="{{ section.settings.cta_secondary_link }}"
+          class="hero-sofiscare__cta hero-sofiscare__cta--secondary"
+          {% if section.settings.cta_secondary_link == blank %}role="link" aria-disabled="true"{% endif %}
+        >
+          {{ section.settings.cta_secondary_text }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_trust_badges -%}
+      <div class="hero-sofiscare__trust">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'trust_badge' -%}
+            <div class="hero-sofiscare__trust-item" {{ block.shopify_attributes }}>
+              {%- if block.settings.icon != blank -%}
+                <span class="hero-sofiscare__trust-icon">{{ block.settings.icon }}</span>
+              {%- endif -%}
+              <span>{{ block.settings.text }}</span>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="hero-sofiscare__media">
+    {%- if section.settings.image != blank -%}
+      {{
+        section.settings.image
+        | image_url: width: 1920
+        | image_tag:
+          class: 'hero-sofiscare__image',
+          loading: 'eager',
+          fetchpriority: 'high',
+          sizes: '(min-width: 990px) 50vw, 100vw',
+          widths: '375, 550, 750, 1100, 1500, 1920'
+      }}
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'hero-sofiscare__image placeholder-svg' }}
+    {%- endif -%}
+    <div class="hero-sofiscare__image-overlay"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero SofisCare",
+  "tag": "section",
+  "class": "section section-hero",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Conteúdo"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge (opcional)",
+      "default": "Lançamento",
+      "info": "Texto destacado acima do título"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "headline",
+      "label": "Título principal",
+      "default": "Pés macios e renovados em <strong>7 dias</strong>."
+    },
+    {
+      "type": "textarea",
+      "id": "subheadline",
+      "label": "Subtítulo",
+      "default": "O tratamento completo que elimina rachaduras, diminui aspereza e devolve o toque sedoso aos seus pés — com resultado visível já nos primeiros 3 dias."
+    },
+    {
+      "type": "header",
+      "content": "Botão Principal"
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_text",
+      "label": "Texto do botão",
+      "default": "Comprar o Kit SofisCare"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_link",
+      "label": "Link do botão"
+    },
+    {
+      "type": "header",
+      "content": "Botão Secundário"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_text",
+      "label": "Texto do botão",
+      "default": "Ver produtos separadamente"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_link",
+      "label": "Link do botão"
+    },
+    {
+      "type": "header",
+      "content": "Imagem"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagem de fundo/destaque"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Disposição",
+      "options": [
+        {
+          "value": "content_first",
+          "label": "Conteúdo à esquerda"
+        },
+        {
+          "value": "image_first",
+          "label": "Imagem à esquerda"
+        },
+        {
+          "value": "fullwidth",
+          "label": "Imagem em tela cheia"
+        }
+      ],
+      "default": "content_first"
+    },
+    {
+      "type": "select",
+      "id": "desktop_text_alignment",
+      "label": "Alinhamento do texto (desktop)",
+      "options": [
+        {
+          "value": "left",
+          "label": "Esquerda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        },
+        {
+          "value": "right",
+          "label": "Direita"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Opacidade do overlay (fullwidth)",
+      "min": 0,
+      "max": 90,
+      "step": 10,
+      "default": 40,
+      "unit": "%"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Selos de confiança"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_badges",
+      "label": "Exibir selos de confiança",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_badge",
+      "name": "Selo de confiança",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Ícone/Emoji",
+          "default": "✓"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Frete grátis"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero SofisCare",
+      "settings": {
+        "badge": "Tratamento Completo",
+        "headline": "Pés macios e renovados em <strong>7 dias</strong>.",
+        "subheadline": "O tratamento completo que elimina rachaduras, diminui aspereza e devolve o toque sedoso aos seus pés — com resultado visível já nos primeiros 3 dias.",
+        "cta_primary_text": "Comprar o Kit SofisCare",
+        "cta_secondary_text": "Ver produtos separadamente",
+        "layout": "content_first",
+        "desktop_text_alignment": "left",
+        "show_trust_badges": true
+      },
+      "blocks": [
+        {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "✓",
+            "text": "Frete grátis"
+          }
+        },
+        {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "🔒",
+            "text": "Compra segura"
+          }
+        },
+        {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "↩️",
+            "text": "7 dias de garantia"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

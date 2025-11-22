@@ -1,0 +1,705 @@
+{% comment %}
+  Seção: Depoimentos SofisCare
+  Descrição: Prova social com depoimentos de clientes em cards modernos
+  Autor: SofisCare Dev Team
+{% endcomment %}
+
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  /* ============================================
+     DEPOIMENTOS - Estilos Base
+     ============================================ */
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* ============================================
+     HEADER - Título e Subtítulo
+     ============================================ */
+
+  .depoimentos__header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+  }
+
+  .depoimentos__title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .depoimentos__subtitle {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.7;
+    opacity: 0.8;
+  }
+
+  /* ============================================
+     GRID DE CARDS
+     ============================================ */
+
+  .depoimentos__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .depoimentos__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .depoimentos__grid {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+    }
+  }
+
+  /* ============================================
+     MODO CARROSSEL
+     ============================================ */
+
+  .depoimentos__carousel {
+    position: relative;
+  }
+
+  .depoimentos__carousel .depoimentos__grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 1rem;
+  }
+
+  .depoimentos__carousel .depoimentos__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .depoimentos__carousel .depoimentos__card {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
+
+  @media screen and (min-width: 750px) {
+    .depoimentos__carousel .depoimentos__card {
+      flex: 0 0 45%;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .depoimentos__carousel .depoimentos__card {
+      flex: 0 0 32%;
+    }
+  }
+
+  /* Indicadores do carrossel */
+  .depoimentos__indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .depoimentos__indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(var(--color-foreground), 0.2);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .depoimentos__indicator.active,
+  .depoimentos__indicator:hover {
+    background: rgb(var(--color-button));
+    transform: scale(1.2);
+  }
+
+  /* ============================================
+     CARD DE DEPOIMENTO
+     ============================================ */
+
+  .depoimentos__card {
+    background: var(--gradient-background);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .depoimentos__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  /* ============================================
+     ÍCONE DE ASPAS
+     ============================================ */
+
+  .depoimentos__quote-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 4rem;
+    line-height: 1;
+    opacity: 0.08;
+    font-family: Georgia, serif;
+    color: rgb(var(--color-foreground));
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ============================================
+     ESTRELAS DE AVALIAÇÃO
+     ============================================ */
+
+  .depoimentos__stars {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .depoimentos__star {
+    font-size: 1.1rem;
+    color: #fbbf24;
+  }
+
+  .depoimentos__star--empty {
+    color: rgba(var(--color-foreground), 0.2);
+  }
+
+  /* ============================================
+     TEXTO DO DEPOIMENTO
+     ============================================ */
+
+  .depoimentos__text {
+    font-size: 1rem;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .depoimentos__text::before {
+    content: '"';
+  }
+
+  .depoimentos__text::after {
+    content: '"';
+  }
+
+  /* ============================================
+     INFORMAÇÕES DO AUTOR
+     ============================================ */
+
+  .depoimentos__author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(var(--color-foreground), 0.1);
+  }
+
+  .depoimentos__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(var(--color-button), 0.1);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .depoimentos__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .depoimentos__avatar-placeholder {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: rgb(var(--color-button));
+  }
+
+  .depoimentos__author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .depoimentos__author-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+
+  .depoimentos__author-details {
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  /* ============================================
+     BADGE VERIFICADO
+     ============================================ */
+
+  .depoimentos__verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: #10b981;
+    margin-top: 0.25rem;
+  }
+
+  .depoimentos__verified svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* ============================================
+     ANIMAÇÕES
+     ============================================ */
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .depoimentos__card.scroll-trigger.animate--slide-in {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+{%- endstyle -%}
+
+{%- comment -%} Markup Principal {%- endcomment -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div
+    class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+  >
+
+    {%- comment -%} Header: Título e Subtítulo {%- endcomment -%}
+    {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
+      <div class="depoimentos__header">
+        {%- if section.settings.title != blank -%}
+          <h2 class="depoimentos__title inline-richtext {{ section.settings.heading_size }}">
+            {{ section.settings.title }}
+          </h2>
+        {%- endif -%}
+
+        {%- if section.settings.subtitle != blank -%}
+          <p class="depoimentos__subtitle">
+            {{ section.settings.subtitle }}
+          </p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Container dos Cards {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="{% if section.settings.show_carousel %}depoimentos__carousel{% endif %}">
+        <div
+          class="depoimentos__grid"
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+          {% endif %}
+        >
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'testimonial' -%}
+              <div
+                class="depoimentos__card{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {%- comment -%} Ícone de Aspas {%- endcomment -%}
+                <span class="depoimentos__quote-icon">"</span>
+
+                {%- comment -%} Estrelas {%- endcomment -%}
+                {%- if section.settings.show_stars -%}
+                  <div class="depoimentos__stars">
+                    {%- assign rating = block.settings.rating | default: 5 -%}
+                    {%- for i in (1..5) -%}
+                      {%- if i <= rating -%}
+                        <span class="depoimentos__star">★</span>
+                      {%- else -%}
+                        <span class="depoimentos__star depoimentos__star--empty">★</span>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+
+                {%- comment -%} Texto do Depoimento {%- endcomment -%}
+                {%- if block.settings.text != blank -%}
+                  <p class="depoimentos__text">{{ block.settings.text }}</p>
+                {%- endif -%}
+
+                {%- comment -%} Autor {%- endcomment -%}
+                <div class="depoimentos__author">
+                  {%- comment -%} Avatar {%- endcomment -%}
+                  <div class="depoimentos__avatar">
+                    {%- if block.settings.avatar != blank -%}
+                      {{ block.settings.avatar | image_url: width: 96 | image_tag: loading: 'lazy' }}
+                    {%- else -%}
+                      {%- comment -%} Placeholder com iniciais {%- endcomment -%}
+                      {%- assign name_parts = block.settings.name | split: ' ' -%}
+                      {%- assign initials = name_parts[0] | slice: 0 -%}
+                      {%- if name_parts.size > 1 -%}
+                        {%- assign initials = initials | append: name_parts[1] | slice: 0 -%}
+                      {%- endif -%}
+                      <span class="depoimentos__avatar-placeholder">{{ initials | upcase }}</span>
+                    {%- endif -%}
+                  </div>
+
+                  {%- comment -%} Info do Autor {%- endcomment -%}
+                  <div class="depoimentos__author-info">
+                    {%- if block.settings.name != blank -%}
+                      <span class="depoimentos__author-name">{{ block.settings.name }}</span>
+                    {%- endif -%}
+
+                    {%- liquid
+                      assign details = ''
+                      if block.settings.age != blank
+                        assign details = block.settings.age | append: ' anos'
+                      endif
+                      if block.settings.profession != blank
+                        if details != ''
+                          assign details = details | append: ' · '
+                        endif
+                        assign details = details | append: block.settings.profession
+                      endif
+                      if block.settings.location != blank
+                        if details != ''
+                          assign details = details | append: ' · '
+                        endif
+                        assign details = details | append: block.settings.location
+                      endif
+                    -%}
+
+                    {%- if details != '' -%}
+                      <span class="depoimentos__author-details">{{ details }}</span>
+                    {%- endif -%}
+
+                    {%- if block.settings.verified -%}
+                      <span class="depoimentos__verified">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                        </svg>
+                        Compra verificada
+                      </span>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        {%- comment -%} Indicadores do Carrossel {%- endcomment -%}
+        {%- if section.settings.show_carousel and section.blocks.size > 1 -%}
+          <div class="depoimentos__indicators">
+            {%- for block in section.blocks -%}
+              <button
+                class="depoimentos__indicator{% if forloop.first %} active{% endif %}"
+                aria-label="Ir para depoimento {{ forloop.index }}"
+              ></button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{%- comment -%} Script do Carrossel {%- endcomment -%}
+{%- if section.settings.show_carousel -%}
+<script>
+  (function() {
+    const section = document.querySelector('#shopify-section-{{ section.id }}');
+    if (!section) return;
+
+    const grid = section.querySelector('.depoimentos__grid');
+    const indicators = section.querySelectorAll('.depoimentos__indicator');
+
+    if (!grid || indicators.length === 0) return;
+
+    // Atualizar indicador ativo no scroll
+    grid.addEventListener('scroll', function() {
+      const scrollLeft = grid.scrollLeft;
+      const cardWidth = grid.querySelector('.depoimentos__card').offsetWidth;
+      const gap = 24; // gap aproximado
+      const activeIndex = Math.round(scrollLeft / (cardWidth + gap));
+
+      indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === activeIndex);
+      });
+    });
+
+    // Click nos indicadores
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', function() {
+        const cardWidth = grid.querySelector('.depoimentos__card').offsetWidth;
+        const gap = 24;
+        grid.scrollTo({
+          left: index * (cardWidth + gap),
+          behavior: 'smooth'
+        });
+      });
+    });
+  })();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Depoimentos SofisCare",
+  "tag": "section",
+  "class": "section section-depoimentos",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Conteúdo"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Título",
+      "default": "O que dizem sobre o SofisCare"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Resultados reais de pessoas que transformaram a saúde dos seus pés."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Tamanho do título",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Pequeno"
+        },
+        {
+          "value": "h1",
+          "label": "Médio"
+        },
+        {
+          "value": "h0",
+          "label": "Grande"
+        }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Colunas no desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "show_carousel",
+      "label": "Ativar modo carrossel",
+      "default": false,
+      "info": "Exibe os depoimentos em slider horizontal"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stars",
+      "label": "Exibir estrelas de avaliação",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Aparência"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espaçamento superior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espaçamento inferior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Depoimento",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texto do depoimento",
+          "default": "Escreva aqui o depoimento do cliente..."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Avaliação (estrelas)",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "header",
+          "content": "Informações do autor"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Foto do cliente (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nome",
+          "default": "Nome do Cliente"
+        },
+        {
+          "type": "text",
+          "id": "age",
+          "label": "Idade (opcional)",
+          "info": "Ex: 42"
+        },
+        {
+          "type": "text",
+          "id": "profession",
+          "label": "Profissão (opcional)",
+          "info": "Ex: Podóloga"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Localização (opcional)",
+          "info": "Ex: São Paulo, SP"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Exibir selo de compra verificada",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Depoimentos SofisCare",
+      "settings": {
+        "title": "O que dizem sobre o SofisCare",
+        "subtitle": "Resultados reais de pessoas que transformaram a saúde dos seus pés.",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "show_carousel": false,
+        "show_stars": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "text": "Em 3 dias já senti meu pé mais liso. O creme é surreal!",
+            "rating": 5,
+            "name": "Maria F.",
+            "age": "42",
+            "verified": true
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "text": "Sou podóloga e recomendo para clientes com rachaduras. Funciona demais.",
+            "rating": 5,
+            "name": "Ana P.",
+            "profession": "Podóloga",
+            "location": "SP",
+            "verified": true
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "text": "Usei o kit por uma semana… parecia pé de bebê. Impressionada!",
+            "rating": 5,
+            "name": "Juliana R.",
+            "age": "36",
+            "verified": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

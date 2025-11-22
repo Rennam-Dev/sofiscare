@@ -1,0 +1,353 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .passos__title-wrapper {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .passos__container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .passos__container {
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: center;
+    }
+  }
+
+  .passos__item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    background: var(--gradient-background);
+    border-radius: 12px;
+    position: relative;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: 750px) {
+    .passos__item {
+      margin: 0;
+    }
+  }
+
+  .passos__numero {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .passos__icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .passos__titulo {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .passos__descricao {
+    opacity: 0.85;
+    line-height: 1.6;
+  }
+
+  .passos__imagem {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .passos__imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .passos__seta {
+    display: none;
+    font-size: 2rem;
+    color: rgb(var(--color-button));
+    align-self: center;
+    flex-shrink: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .passos__seta {
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+    }
+  }
+
+  .passos__resultado {
+    margin-top: 3rem;
+    text-align: center;
+    padding: 2rem;
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    border-radius: 12px;
+  }
+
+  .passos__resultado-titulo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .passos__resultado-descricao {
+    opacity: 0.9;
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+
+    {%- unless section.settings.title == blank -%}
+      <div class="passos__title-wrapper">
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
+        </h2>
+      </div>
+    {%- endunless -%}
+
+    <div class="passos__container"
+      {% if settings.animations_reveal_on_scroll %}
+        data-cascade
+      {% endif %}
+    >
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'passo' -%}
+          {%- if forloop.index > 1 -%}
+            <div class="passos__seta">→</div>
+          {%- endif -%}
+
+          <div
+            class="passos__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {{ block.shopify_attributes }}
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ forloop.index }};"
+            {% endif %}
+          >
+            <div class="passos__numero">{{ forloop.index }}</div>
+
+            {%- if block.settings.image != blank -%}
+              <div class="passos__imagem">
+                {{ block.settings.image | image_url: width: 240 | image_tag: loading: 'lazy' }}
+              </div>
+            {%- elsif block.settings.icon != blank -%}
+              <div class="passos__icon">{{ block.settings.icon }}</div>
+            {%- endif -%}
+
+            {%- unless block.settings.titulo == blank -%}
+              <h3 class="passos__titulo">{{ block.settings.titulo }}</h3>
+            {%- endunless -%}
+
+            {%- unless block.settings.descricao == blank -%}
+              <p class="passos__descricao">{{ block.settings.descricao }}</p>
+            {%- endunless -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'resultado' -%}
+        <div
+          class="passos__resultado{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {%- unless block.settings.titulo == blank -%}
+            <h3 class="passos__resultado-titulo">{{ block.settings.titulo }}</h3>
+          {%- endunless -%}
+          {%- unless block.settings.descricao == blank -%}
+            <p class="passos__resultado-descricao">{{ block.settings.descricao }}</p>
+          {%- endunless -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Passos do Tratamento",
+  "class": "section",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Como funciona o tratamento",
+      "label": "Título"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Pequeno"
+        },
+        {
+          "value": "h1",
+          "label": "Médio"
+        },
+        {
+          "value": "h0",
+          "label": "Grande"
+        }
+      ],
+      "default": "h1",
+      "label": "Tamanho do título"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espaçamento superior",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espaçamento inferior",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "passo",
+      "name": "Passo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem do produto (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Ícone/Emoji (alternativo)",
+          "info": "Ex: 🧼, 💧, ✨"
+        },
+        {
+          "type": "text",
+          "id": "titulo",
+          "default": "Passo",
+          "label": "Título do passo"
+        },
+        {
+          "type": "textarea",
+          "id": "descricao",
+          "default": "Descrição do que fazer neste passo.",
+          "label": "Descrição"
+        }
+      ]
+    },
+    {
+      "type": "resultado",
+      "name": "Resultado Final",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "titulo",
+          "default": "Resultado",
+          "label": "Título"
+        },
+        {
+          "type": "textarea",
+          "id": "descricao",
+          "default": "Pés visivelmente mais macios, lisos e renovados.",
+          "label": "Descrição"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Passos do Tratamento",
+      "blocks": [
+        {
+          "type": "passo",
+          "settings": {
+            "icon": "🧼",
+            "titulo": "Passo 1 — Renova Pé",
+            "descricao": "Remove células mortas e reduz aspereza."
+          }
+        },
+        {
+          "type": "passo",
+          "settings": {
+            "icon": "💧",
+            "titulo": "Passo 2 — Hidraseda",
+            "descricao": "Nutre profundamente, suaviza rachaduras e devolve maciez."
+          }
+        },
+        {
+          "type": "resultado",
+          "settings": {
+            "titulo": "Resultado",
+            "descricao": "Pés visivelmente mais macios, lisos e renovados."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
