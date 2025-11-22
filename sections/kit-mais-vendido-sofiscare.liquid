@@ -1,0 +1,855 @@
+{% comment %}
+  Seção: Kit Mais Vendido SofisCare
+  Descrição: Destaque do combo Renova Pé + Hidraseda com foco em conversão
+  Autor: SofisCare Dev Team
+{% endcomment %}
+
+{%- style -%}
+  /* ============================================
+     KIT MAIS VENDIDO - Estilos Base
+     ============================================ */
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* ============================================
+     HEADER - Título e Descrição
+     ============================================ */
+
+  .kit-vendido__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+
+  .kit-vendido__badge {
+    display: inline-block;
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+
+  .kit-vendido__title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .kit-vendido__description {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.7;
+    opacity: 0.85;
+  }
+
+  /* ============================================
+     GRID DE CARDS
+     ============================================ */
+
+  .kit-vendido__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  @media screen and (min-width: 550px) {
+    .kit-vendido__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .kit-vendido__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  /* ============================================
+     CARD DE PRODUTO
+     ============================================ */
+
+  .kit-vendido__card {
+    background: var(--gradient-background);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .kit-vendido__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  /* ============================================
+     CARD COMBO (DESTAQUE)
+     ============================================ */
+
+  .kit-vendido__card--combo {
+    background: linear-gradient(135deg, rgba(var(--color-button), 0.08) 0%, rgba(var(--color-button), 0.02) 100%);
+    border: 2px solid rgb(var(--color-button));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kit-vendido__card--combo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgb(var(--color-button));
+  }
+
+  @media screen and (min-width: 550px) and (max-width: 989px) {
+    .kit-vendido__card--combo {
+      grid-column: span 2;
+    }
+  }
+
+  .kit-vendido__combo-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ============================================
+     ÍCONE DO CARD
+     ============================================ */
+
+  .kit-vendido__icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+    line-height: 1;
+  }
+
+  .kit-vendido__icon-image {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(var(--color-button), 0.1);
+  }
+
+  .kit-vendido__icon-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ============================================
+     CONTEÚDO DO CARD
+     ============================================ */
+
+  .kit-vendido__card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .kit-vendido__card-text {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  /* ============================================
+     LISTA DE BULLETS
+     ============================================ */
+
+  .kit-vendido__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    text-align: left;
+    flex-grow: 1;
+  }
+
+  .kit-vendido__bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .kit-vendido__bullet-icon {
+    color: rgb(var(--color-button));
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  /* ============================================
+     PREÇOS
+     ============================================ */
+
+  .kit-vendido__price-wrapper {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(var(--color-foreground), 0.1);
+  }
+
+  .kit-vendido__price-old {
+    font-size: 1rem;
+    text-decoration: line-through;
+    opacity: 0.5;
+    margin-right: 0.5rem;
+  }
+
+  .kit-vendido__price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgb(var(--color-button));
+  }
+
+  .kit-vendido__card--combo .kit-vendido__price {
+    font-size: 2rem;
+  }
+
+  .kit-vendido__savings {
+    display: inline-block;
+    background: rgba(40, 167, 69, 0.15);
+    color: #28a745;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+
+  /* ============================================
+     CTA PRINCIPAL
+     ============================================ */
+
+  .kit-vendido__cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .kit-vendido__cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    padding: 1.25rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(var(--color-button), 0.3);
+  }
+
+  .kit-vendido__cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(var(--color-button), 0.4);
+  }
+
+  .kit-vendido__cta-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .kit-vendido__cta-subtext {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    opacity: 0.7;
+  }
+
+  /* ============================================
+     CARD BOTÃO INDIVIDUAL
+     ============================================ */
+
+  .kit-vendido__card-button {
+    display: inline-block;
+    background: transparent;
+    border: 2px solid rgb(var(--color-button));
+    color: rgb(var(--color-button));
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+  }
+
+  .kit-vendido__card-button:hover {
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+  }
+
+  .kit-vendido__card--combo .kit-vendido__card-button {
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+  }
+
+  .kit-vendido__card--combo .kit-vendido__card-button:hover {
+    opacity: 0.9;
+  }
+{%- endstyle -%}
+
+{%- comment -%} Markup Principal {%- endcomment -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div
+    class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+  >
+
+    {%- comment -%} Header: Badge, Título e Descrição {%- endcomment -%}
+    <div class="kit-vendido__header">
+      {%- if section.settings.badge != blank -%}
+        <span class="kit-vendido__badge">{{ section.settings.badge }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.title != blank -%}
+        <h2 class="kit-vendido__title inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
+        </h2>
+      {%- endif -%}
+
+      {%- if section.settings.description != blank -%}
+        <p class="kit-vendido__description">
+          {{ section.settings.description }}
+        </p>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Grid de Cards {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div
+        class="kit-vendido__grid"
+        {% if settings.animations_reveal_on_scroll %}
+          data-cascade
+        {% endif %}
+      >
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign is_combo = false
+            if block.type == 'combo_card'
+              assign is_combo = true
+            endif
+          -%}
+
+          <div
+            class="kit-vendido__card{% if is_combo %} kit-vendido__card--combo{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {{ block.shopify_attributes }}
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ forloop.index }};"
+            {% endif %}
+          >
+            {%- comment -%} Badge do Combo {%- endcomment -%}
+            {%- if is_combo and block.settings.combo_badge != blank -%}
+              <span class="kit-vendido__combo-badge">{{ block.settings.combo_badge }}</span>
+            {%- endif -%}
+
+            {%- comment -%} Ícone ou Imagem {%- endcomment -%}
+            {%- if block.settings.image != blank -%}
+              <div class="kit-vendido__icon-image">
+                {{ block.settings.image | image_url: width: 160 | image_tag: loading: 'lazy' }}
+              </div>
+            {%- elsif block.settings.icon != blank -%}
+              <span class="kit-vendido__icon">{{ block.settings.icon }}</span>
+            {%- endif -%}
+
+            {%- comment -%} Título do Card {%- endcomment -%}
+            {%- if block.settings.title != blank -%}
+              <h3 class="kit-vendido__card-title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+
+            {%- comment -%} Texto do Card {%- endcomment -%}
+            {%- if block.settings.text != blank -%}
+              <p class="kit-vendido__card-text">{{ block.settings.text }}</p>
+            {%- endif -%}
+
+            {%- comment -%} Lista de Bullets {%- endcomment -%}
+            {%- if block.settings.bullet_1 != blank or block.settings.bullet_2 != blank or block.settings.bullet_3 != blank -%}
+              <ul class="kit-vendido__bullets">
+                {%- if block.settings.bullet_1 != blank -%}
+                  <li class="kit-vendido__bullet">
+                    <span class="kit-vendido__bullet-icon">✓</span>
+                    <span>{{ block.settings.bullet_1 }}</span>
+                  </li>
+                {%- endif -%}
+                {%- if block.settings.bullet_2 != blank -%}
+                  <li class="kit-vendido__bullet">
+                    <span class="kit-vendido__bullet-icon">✓</span>
+                    <span>{{ block.settings.bullet_2 }}</span>
+                  </li>
+                {%- endif -%}
+                {%- if block.settings.bullet_3 != blank -%}
+                  <li class="kit-vendido__bullet">
+                    <span class="kit-vendido__bullet-icon">✓</span>
+                    <span>{{ block.settings.bullet_3 }}</span>
+                  </li>
+                {%- endif -%}
+                {%- if block.settings.bullet_4 != blank -%}
+                  <li class="kit-vendido__bullet">
+                    <span class="kit-vendido__bullet-icon">✓</span>
+                    <span>{{ block.settings.bullet_4 }}</span>
+                  </li>
+                {%- endif -%}
+              </ul>
+            {%- endif -%}
+
+            {%- comment -%} Preços {%- endcomment -%}
+            {%- if section.settings.show_price and block.settings.price != blank -%}
+              <div class="kit-vendido__price-wrapper">
+                {%- if block.settings.price_old != blank -%}
+                  <span class="kit-vendido__price-old">{{ block.settings.price_old }}</span>
+                {%- endif -%}
+                <span class="kit-vendido__price">{{ block.settings.price }}</span>
+                {%- if is_combo and block.settings.savings_text != blank -%}
+                  <div>
+                    <span class="kit-vendido__savings">{{ block.settings.savings_text }}</span>
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- comment -%} Botão do Card {%- endcomment -%}
+            {%- if block.settings.button_label != blank -%}
+              <a
+                class="kit-vendido__card-button"
+                {% if block.settings.button_link == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ block.settings.button_link }}"
+                {% endif %}
+              >
+                {{ block.settings.button_label }}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} CTA Principal {%- endcomment -%}
+    {%- if section.settings.cta_label != blank -%}
+      <div class="kit-vendido__cta">
+        <a
+          class="kit-vendido__cta-button"
+          {% if section.settings.cta_link == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href="{{ section.settings.cta_link }}"
+          {% endif %}
+        >
+          <span>{{ section.settings.cta_label }}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </a>
+        {%- if section.settings.cta_subtext != blank -%}
+          <p class="kit-vendido__cta-subtext">{{ section.settings.cta_subtext }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Kit Mais Vendido SofisCare",
+  "tag": "section",
+  "class": "section section-kit-vendido",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Conteúdo"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge (opcional)",
+      "default": "Mais Vendido"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Título",
+      "default": "O Kit SofisCare é o mais escolhido por quem quer resultado rápido."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Descrição",
+      "default": "Use os dois produtos juntos e tenha pés macios, lisos e renovados de forma mais eficiente — e com desconto exclusivo."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Tamanho do título",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Pequeno"
+        },
+        {
+          "value": "h1",
+          "label": "Médio"
+        },
+        {
+          "value": "h0",
+          "label": "Grande"
+        }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "header",
+      "content": "Preços"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Exibir preços",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Botão Principal"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texto do botão",
+      "default": "Comprar Kit SofisCare"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Link do botão"
+    },
+    {
+      "type": "text",
+      "id": "cta_subtext",
+      "label": "Texto abaixo do botão (opcional)",
+      "default": "Frete grátis para todo o Brasil"
+    },
+    {
+      "type": "header",
+      "content": "Aparência"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espaçamento superior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espaçamento inferior",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Card de Produto",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem do produto (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Ícone/Emoji",
+          "default": "🧴",
+          "info": "Usado se não houver imagem"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nome do produto",
+          "default": "Nome do Produto"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Descrição curta (opcional)"
+        },
+        {
+          "type": "header",
+          "content": "Benefícios"
+        },
+        {
+          "type": "text",
+          "id": "bullet_1",
+          "label": "Benefício 1",
+          "default": "Benefício principal"
+        },
+        {
+          "type": "text",
+          "id": "bullet_2",
+          "label": "Benefício 2"
+        },
+        {
+          "type": "text",
+          "id": "bullet_3",
+          "label": "Benefício 3"
+        },
+        {
+          "type": "text",
+          "id": "bullet_4",
+          "label": "Benefício 4 (opcional)"
+        },
+        {
+          "type": "header",
+          "content": "Preço"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Preço",
+          "default": "R$ 69"
+        },
+        {
+          "type": "text",
+          "id": "price_old",
+          "label": "Preço anterior (opcional)",
+          "info": "Será exibido riscado"
+        },
+        {
+          "type": "header",
+          "content": "Botão"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Texto do botão",
+          "default": "Ver produto"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Link do botão"
+        }
+      ]
+    },
+    {
+      "type": "combo_card",
+      "name": "Card do Combo",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "combo_badge",
+          "label": "Badge do combo",
+          "default": "Economize"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem do combo (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Ícone/Emoji",
+          "default": "⭐",
+          "info": "Usado se não houver imagem"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nome do combo",
+          "default": "Combo SofisCare"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Descrição",
+          "default": "Compre junto e economize — resultados mais rápidos e eficientes."
+        },
+        {
+          "type": "header",
+          "content": "Benefícios"
+        },
+        {
+          "type": "text",
+          "id": "bullet_1",
+          "label": "Benefício 1",
+          "default": "Renova Pé + Hidraseda"
+        },
+        {
+          "type": "text",
+          "id": "bullet_2",
+          "label": "Benefício 2",
+          "default": "Resultado em até 3 dias"
+        },
+        {
+          "type": "text",
+          "id": "bullet_3",
+          "label": "Benefício 3",
+          "default": "Desconto exclusivo"
+        },
+        {
+          "type": "text",
+          "id": "bullet_4",
+          "label": "Benefício 4 (opcional)"
+        },
+        {
+          "type": "header",
+          "content": "Preço"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Preço do combo",
+          "default": "R$ 119"
+        },
+        {
+          "type": "text",
+          "id": "price_old",
+          "label": "Preço anterior",
+          "default": "R$ 158",
+          "info": "Soma dos produtos individuais"
+        },
+        {
+          "type": "text",
+          "id": "savings_text",
+          "label": "Texto de economia",
+          "default": "Economize R$ 39"
+        },
+        {
+          "type": "header",
+          "content": "Botão"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Texto do botão",
+          "default": "Comprar combo"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Link do botão"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kit Mais Vendido SofisCare",
+      "settings": {
+        "badge": "Mais Vendido",
+        "title": "O Kit SofisCare é o mais escolhido por quem quer resultado rápido.",
+        "description": "Use os dois produtos juntos e tenha pés macios, lisos e renovados de forma mais eficiente — e com desconto exclusivo.",
+        "heading_size": "h1",
+        "show_price": true,
+        "cta_label": "Comprar Kit SofisCare",
+        "cta_subtext": "Frete grátis para todo o Brasil",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": [
+        {
+          "type": "product_card",
+          "settings": {
+            "icon": "🧼",
+            "title": "Renova Pé — Esfoliante",
+            "bullet_1": "Remove células mortas",
+            "bullet_2": "Reduz aspereza",
+            "bullet_3": "Deixa o pé pronto para o hidratante",
+            "price": "R$ 69",
+            "button_label": "Ver produto"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "icon": "💧",
+            "title": "Hidraseda — Creme Hidratante",
+            "bullet_1": "Amacia a pele dura",
+            "bullet_2": "Suaviza rachaduras",
+            "bullet_3": "Nutre profundamente",
+            "price": "R$ 89",
+            "button_label": "Ver produto"
+          }
+        },
+        {
+          "type": "combo_card",
+          "settings": {
+            "combo_badge": "Economize",
+            "icon": "⭐",
+            "title": "Combo SofisCare",
+            "text": "Compre junto e economize — resultados mais rápidos e eficientes.",
+            "bullet_1": "Renova Pé + Hidraseda",
+            "bullet_2": "Resultado em até 3 dias",
+            "bullet_3": "Desconto exclusivo",
+            "price": "R$ 119",
+            "price_old": "R$ 158",
+            "savings_text": "Economize R$ 39",
+            "button_label": "Comprar combo"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
