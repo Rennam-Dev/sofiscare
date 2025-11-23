@@ -1,20 +1,33 @@
 /* ==========================================================================
-   SOFISCARE DESIGN SYSTEM - CSS GLOBAL OFICIAL
-   Versao: 2.0.0
+   SOFISCARE DESIGN SYSTEM - CSS GLOBAL OFICIAL v3.0
+   Versao: 3.0.0 (Otimizado para Shopify Dawn)
    Paleta: Roxo Lavanda Premium
+
+   IMPORTANTE: Este CSS foi otimizado para:
+   - Nao conflitar com base.css do Shopify Dawn
+   - Usar seletores com especificidade adequada
+   - Mapear variaveis para o sistema Shopify
    ========================================================================== */
 
 /* ==========================================================================
    1. VARIAVEIS DA MARCA (PALETA OFICIAL)
+
+   Nota: Usamos prefixo --sofis- para evitar conflito com variaveis Shopify
    ========================================================================== */
 
 :root {
-  /* SofisCare - Cores oficiais */
+  /* SofisCare - Cores oficiais (valores HEX) */
   --sofis-primary: #5A3A85;
   --sofis-primary-dark: #2E1B47;
   --sofis-primary-light: #C9B7E8;
   --sofis-secondary: #FDFBF7;
   --sofis-accent: #9B70C9;
+
+  /* Cores em RGB (para uso com rgba) */
+  --sofis-primary-rgb: 90, 58, 133;
+  --sofis-primary-dark-rgb: 46, 27, 71;
+  --sofis-primary-light-rgb: 201, 183, 232;
+  --sofis-accent-rgb: 155, 112, 201;
 
   /* Neutros */
   --sofis-white: #FFFFFF;
@@ -80,122 +93,32 @@
 }
 
 /* ==========================================================================
-   2. RESET E BASE
+   2. OVERRIDE DO COLOR SCHEME SHOPIFY (Para paginas landing)
+
+   Sobrescreve as variaveis do Dawn para aplicar paleta SofisCare
    ========================================================================== */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* Aplica em sections com classe color-scheme-1 ou nas landing pages */
+.color-scheme-1,
+.color-scheme--scheme-1,
+[class*="color-scheme-1"],
+.section-hero,
+.section-solucao-completa,
+.section-kit-vendido,
+.section-passos,
+.section-porque-funciona,
+.section-depoimentos,
+.section-faq,
+.section-garantia {
+  --color-foreground: var(--sofis-gray-900-rgb, 38, 35, 41);
+  --color-background: 253, 251, 247;
+  --color-button: var(--sofis-primary-rgb, 90, 58, 133);
+  --color-button-text: 255, 255, 255;
+  --gradient-background: linear-gradient(135deg, var(--sofis-primary-light) 0%, var(--sofis-secondary) 90%);
 }
 
 /* ==========================================================================
-   3. TIPOGRAFIA GLOBAL
-   ========================================================================== */
-
-body {
-  font-family: var(--sofis-font-body);
-  color: var(--sofis-gray-900);
-  background-color: var(--sofis-secondary);
-  line-height: 1.6;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--sofis-font-display);
-  letter-spacing: -0.5px;
-  color: var(--sofis-primary-dark);
-  line-height: 1.2;
-  margin: 0;
-}
-
-h1 { font-size: var(--sofis-text-5xl); }
-h2 { font-size: var(--sofis-text-4xl); }
-h3 { font-size: var(--sofis-text-3xl); }
-h4 { font-size: var(--sofis-text-2xl); }
-
-p {
-  color: var(--sofis-gray-700);
-  line-height: 1.7;
-}
-
-/* ==========================================================================
-   4. BOTOES GLOBAIS (UNIFICADOS)
-   ========================================================================== */
-
-.btn-primary,
-.sofis-btn--primary,
-.hero-sofiscare__cta--primary {
-  background: var(--sofis-primary);
-  color: var(--sofis-white);
-  padding: 14px 28px;
-  font-size: var(--sofis-text-lg);
-  font-weight: 600;
-  border: none;
-  border-radius: var(--sofis-radius-lg);
-  box-shadow: var(--sofis-shadow-md);
-  transition: var(--sofis-transition);
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--sofis-space-2);
-}
-
-.btn-primary:hover,
-.sofis-btn--primary:hover,
-.hero-sofiscare__cta--primary:hover {
-  background: var(--sofis-primary-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--sofis-shadow-lg);
-}
-
-.btn-secondary,
-.sofis-btn--secondary,
-.hero-sofiscare__cta--secondary {
-  background: var(--sofis-primary-light);
-  color: var(--sofis-primary-dark);
-  padding: 12px 26px;
-  font-size: var(--sofis-text-base);
-  font-weight: 600;
-  border: 2px solid transparent;
-  border-radius: var(--sofis-radius-lg);
-  transition: var(--sofis-transition);
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--sofis-space-2);
-}
-
-.btn-secondary:hover,
-.sofis-btn--secondary:hover,
-.hero-sofiscare__cta--secondary:hover {
-  background: var(--sofis-white);
-  border-color: var(--sofis-primary);
-  transform: translateY(-2px);
-}
-
-/* ==========================================================================
-   5. CARTOES PADRAO (GLOBAL)
-   ========================================================================== */
-
-.sofis-card {
-  background: var(--sofis-white);
-  border-radius: var(--sofis-radius-lg);
-  padding: var(--sofis-space-6);
-  box-shadow: var(--sofis-shadow-sm);
-  transition: var(--sofis-transition);
-}
-
-.sofis-card:hover {
-  box-shadow: var(--sofis-shadow-md);
-  transform: translateY(-4px);
-}
-
-/* ==========================================================================
-   6. HERO SECTION
+   3. HERO SECTION
    ========================================================================== */
 
 .hero-sofiscare {
@@ -204,11 +127,7 @@ p {
   min-height: 80vh;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(
-    135deg,
-    var(--sofis-primary-light) 0%,
-    var(--sofis-secondary) 90%
-  );
+  background: linear-gradient(135deg, var(--sofis-primary-light) 0%, var(--sofis-secondary) 90%);
 }
 
 @media screen and (min-width: 990px) {
@@ -274,13 +193,15 @@ p {
   box-shadow: var(--sofis-shadow-sm);
 }
 
-/* Headline do Hero */
-.hero-sofiscare__headline {
+/* Headline do Hero - especificidade aumentada */
+.hero-sofiscare .hero-sofiscare__headline,
+h1.hero-sofiscare__headline {
   font-size: clamp(2rem, 5vw, var(--sofis-text-5xl));
   font-family: var(--sofis-font-display);
   color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-6);
   line-height: 1.1;
+  letter-spacing: -0.5px;
 }
 
 .hero-sofiscare__headline strong {
@@ -288,8 +209,10 @@ p {
 }
 
 /* Subheadline do Hero */
-.hero-sofiscare__subheadline {
+.hero-sofiscare .hero-sofiscare__subheadline,
+p.hero-sofiscare__subheadline {
   font-size: clamp(1rem, 2vw, var(--sofis-text-xl));
+  font-family: var(--sofis-font-body);
   color: var(--sofis-gray-700);
   margin-bottom: var(--sofis-space-8);
   max-width: 540px;
@@ -341,6 +264,39 @@ p {
   text-decoration: none;
   transition: var(--sofis-transition);
   text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sofis-space-2);
+  cursor: pointer;
+  border: none;
+}
+
+/* CTA Primary */
+.hero-sofiscare__cta--primary {
+  background: var(--sofis-primary);
+  color: var(--sofis-white);
+  box-shadow: var(--sofis-shadow-md);
+}
+
+.hero-sofiscare__cta--primary:hover {
+  background: var(--sofis-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--sofis-shadow-lg);
+  color: var(--sofis-white);
+}
+
+/* CTA Secondary */
+.hero-sofiscare__cta--secondary {
+  background: var(--sofis-primary-light);
+  color: var(--sofis-primary-dark);
+  border: 2px solid transparent;
+}
+
+.hero-sofiscare__cta--secondary:hover {
+  background: var(--sofis-white);
+  border-color: var(--sofis-primary);
+  transform: translateY(-2px);
 }
 
 /* Media do Hero */
@@ -368,29 +324,17 @@ p {
 .hero-sofiscare__image-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(253, 251, 247, 0.2) 0%,
-    rgba(253, 251, 247, 0) 30%
-  );
+  background: linear-gradient(to bottom, rgba(253, 251, 247, 0.2) 0%, rgba(253, 251, 247, 0) 30%);
   pointer-events: none;
 }
 
 @media screen and (min-width: 990px) {
   .hero-sofiscare__image-overlay {
-    background: linear-gradient(
-      to right,
-      rgba(201, 183, 232, 0.3) 0%,
-      rgba(253, 251, 247, 0) 25%
-    );
+    background: linear-gradient(to right, rgba(201, 183, 232, 0.3) 0%, rgba(253, 251, 247, 0) 25%);
   }
 
   .hero-sofiscare--reverse .hero-sofiscare__image-overlay {
-    background: linear-gradient(
-      to left,
-      rgba(201, 183, 232, 0.3) 0%,
-      rgba(253, 251, 247, 0) 25%
-    );
+    background: linear-gradient(to left, rgba(201, 183, 232, 0.3) 0%, rgba(253, 251, 247, 0) 25%);
   }
 }
 
@@ -453,8 +397,12 @@ p {
 }
 
 /* ==========================================================================
-   7. SOLUCAO COMPLETA SECTION
+   4. SOLUCAO COMPLETA SECTION
    ========================================================================== */
+
+.section-solucao-completa {
+  background: var(--sofis-secondary);
+}
 
 .solucao-completa__header {
   text-align: center;
@@ -462,15 +410,20 @@ p {
   margin: 0 auto var(--sofis-space-12);
 }
 
-.solucao-completa__title {
+.solucao-completa__title,
+.section-solucao-completa .title {
   font-size: clamp(1.75rem, 4vw, var(--sofis-text-4xl));
+  font-family: var(--sofis-font-display);
   color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-4);
+  line-height: 1.2;
 }
 
 .solucao-completa__description {
   font-size: clamp(1rem, 2vw, var(--sofis-text-lg));
+  font-family: var(--sofis-font-body);
   color: var(--sofis-gray-700);
+  line-height: 1.7;
 }
 
 .solucao-completa__grid {
@@ -546,8 +499,12 @@ p {
 }
 
 /* ==========================================================================
-   8. KIT MAIS VENDIDO SECTION
+   5. KIT MAIS VENDIDO SECTION
    ========================================================================== */
+
+.section-kit-vendido {
+  background: var(--sofis-secondary);
+}
 
 .kit-vendido__header {
   text-align: center;
@@ -569,15 +526,20 @@ p {
   box-shadow: var(--sofis-shadow-sm);
 }
 
-.kit-vendido__title {
+.kit-vendido__title,
+.section-kit-vendido .title {
   font-size: clamp(1.75rem, 4vw, var(--sofis-text-4xl));
+  font-family: var(--sofis-font-display);
   color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-4);
+  line-height: 1.2;
 }
 
 .kit-vendido__description {
   font-size: clamp(1rem, 2vw, var(--sofis-text-lg));
+  font-family: var(--sofis-font-body);
   color: var(--sofis-gray-700);
+  line-height: 1.7;
 }
 
 .kit-vendido__grid {
@@ -654,6 +616,12 @@ p {
   text-transform: uppercase;
 }
 
+.kit-vendido__card-icon {
+  font-size: 3rem;
+  margin-bottom: var(--sofis-space-4);
+  display: block;
+}
+
 .kit-vendido__card-title {
   font-size: var(--sofis-text-xl);
   font-weight: 700;
@@ -693,7 +661,7 @@ p {
 .kit-vendido__bullets {
   list-style: none;
   padding: 0;
-  margin: 0 0 var(--sofis-space-6);
+  margin: var(--sofis-space-4) 0 var(--sofis-space-6);
   text-align: left;
   flex-grow: 1;
 }
@@ -714,9 +682,17 @@ p {
   flex-shrink: 0;
 }
 
+.kit-vendido__cta {
+  margin-top: auto;
+}
+
 /* ==========================================================================
-   9. DEPOIMENTOS SECTION
+   6. DEPOIMENTOS SECTION
    ========================================================================== */
+
+.section-depoimentos {
+  background: var(--sofis-secondary);
+}
 
 .depoimentos__header {
   text-align: center;
@@ -724,15 +700,20 @@ p {
   margin: 0 auto var(--sofis-space-12);
 }
 
-.depoimentos__title {
+.depoimentos__title,
+.section-depoimentos .title {
   font-size: clamp(1.75rem, 4vw, var(--sofis-text-4xl));
+  font-family: var(--sofis-font-display);
   color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-4);
+  line-height: 1.2;
 }
 
 .depoimentos__subtitle {
   font-size: clamp(1rem, 2vw, var(--sofis-text-lg));
+  font-family: var(--sofis-font-body);
   color: var(--sofis-gray-500);
+  line-height: 1.7;
 }
 
 .depoimentos__grid {
@@ -832,6 +813,10 @@ p {
   object-fit: cover;
 }
 
+.depoimentos__author-info {
+  flex: 1;
+}
+
 .depoimentos__author-name {
   font-weight: 600;
   font-size: var(--sofis-text-sm);
@@ -853,8 +838,12 @@ p {
 }
 
 /* ==========================================================================
-   10. FAQ SECTION
+   7. FAQ SECTION
    ========================================================================== */
+
+.section-faq {
+  background: var(--sofis-secondary);
+}
 
 .faq-sofiscare {
   max-width: 800px;
@@ -866,17 +855,22 @@ p {
   margin-bottom: var(--sofis-space-10);
 }
 
-.faq-sofiscare__title {
+.faq-sofiscare__title,
+.section-faq .title {
   font-size: clamp(1.75rem, 4vw, var(--sofis-text-4xl));
+  font-family: var(--sofis-font-display);
   color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-3);
+  line-height: 1.2;
 }
 
 .faq-sofiscare__subtitle {
   font-size: clamp(1rem, 2vw, var(--sofis-text-lg));
+  font-family: var(--sofis-font-body);
   color: var(--sofis-gray-500);
   max-width: 600px;
   margin: 0 auto;
+  line-height: 1.7;
 }
 
 .faq-sofiscare__list {
@@ -910,7 +904,7 @@ p {
   border: none;
   cursor: pointer;
   text-align: left;
-  font-family: inherit;
+  font-family: var(--sofis-font-body);
   font-size: var(--sofis-text-lg);
   font-weight: 600;
   line-height: 1.4;
@@ -989,9 +983,41 @@ p {
   color: var(--sofis-gray-700);
 }
 
+.faq-sofiscare__answer p {
+  margin: 0 0 var(--sofis-space-3);
+  color: var(--sofis-gray-700);
+}
+
+.faq-sofiscare__answer p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-sofiscare__answer strong {
+  color: var(--sofis-primary-dark);
+}
+
+/* FAQ CTA */
+.faq-sofiscare__cta {
+  text-align: center;
+  margin-top: var(--sofis-space-10);
+  padding: var(--sofis-space-6);
+  background: var(--sofis-gray-50);
+  border-radius: var(--sofis-radius-lg);
+}
+
+.faq-sofiscare__cta-text {
+  font-size: var(--sofis-text-base);
+  color: var(--sofis-gray-700);
+  margin-bottom: var(--sofis-space-4);
+}
+
 /* ==========================================================================
-   11. GARANTIA SECTION
+   8. GARANTIA SECTION
    ========================================================================== */
+
+.section-garantia {
+  background: var(--sofis-secondary);
+}
 
 .garantia-sofiscare,
 .garantia-box {
@@ -1064,10 +1090,13 @@ p {
   }
 }
 
-.garantia-sofiscare__title {
+.garantia-sofiscare__title,
+.section-garantia .title {
   font-size: clamp(1.5rem, 4vw, var(--sofis-text-3xl));
+  font-family: var(--sofis-font-display);
   color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-4);
+  line-height: 1.2;
 }
 
 .garantia-sofiscare__title strong {
@@ -1076,9 +1105,11 @@ p {
 
 .garantia-sofiscare__description {
   font-size: clamp(1rem, 2vw, var(--sofis-text-lg));
+  font-family: var(--sofis-font-body);
   color: var(--sofis-gray-700);
   max-width: 580px;
   margin: 0 auto var(--sofis-space-6);
+  line-height: 1.7;
 }
 
 .garantia-sofiscare__bullets {
@@ -1133,16 +1164,23 @@ p {
 }
 
 /* ==========================================================================
-   12. PASSOS DO TRATAMENTO
+   9. PASSOS DO TRATAMENTO
    ========================================================================== */
+
+.section-passos {
+  background: var(--sofis-secondary);
+}
 
 .passos__title-wrapper {
   text-align: center;
   margin-bottom: var(--sofis-space-12);
 }
 
-.passos__title-wrapper .title {
+.passos__title-wrapper .title,
+.section-passos .title {
+  font-family: var(--sofis-font-display);
   color: var(--sofis-primary-dark);
+  line-height: 1.2;
 }
 
 .passos__container {
@@ -1258,16 +1296,23 @@ p {
 }
 
 /* ==========================================================================
-   13. POR QUE FUNCIONA
+   10. POR QUE FUNCIONA SECTION
    ========================================================================== */
+
+.section-porque-funciona {
+  background: var(--sofis-secondary);
+}
 
 .porque__title-wrapper {
   text-align: center;
   margin-bottom: var(--sofis-space-12);
 }
 
-.porque__title-wrapper .title {
+.porque__title-wrapper .title,
+.section-porque-funciona .title {
+  font-family: var(--sofis-font-display);
   color: var(--sofis-primary-dark);
+  line-height: 1.2;
 }
 
 .porque__subtitle {
@@ -1324,7 +1369,86 @@ p {
 }
 
 /* ==========================================================================
-   14. BOTAO FLUTUANTE WHATSAPP
+   11. ANTES/DEPOIS SECTION
+   ========================================================================== */
+
+.section-antes-depois {
+  background: var(--sofis-secondary);
+}
+
+.antes-depois__header {
+  text-align: center;
+  margin-bottom: var(--sofis-space-12);
+}
+
+.antes-depois__title,
+.section-antes-depois .title {
+  font-size: clamp(1.75rem, 4vw, var(--sofis-text-4xl));
+  font-family: var(--sofis-font-display);
+  color: var(--sofis-primary-dark);
+  margin-bottom: var(--sofis-space-3);
+  line-height: 1.2;
+}
+
+.antes-depois__subtitle {
+  font-size: clamp(1rem, 2vw, var(--sofis-text-lg));
+  color: var(--sofis-gray-500);
+}
+
+.antes-depois__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sofis-space-6);
+}
+
+@media screen and (min-width: 750px) {
+  .antes-depois__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sofis-space-8);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .antes-depois__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.antes-depois__card {
+  background: var(--sofis-white);
+  border-radius: var(--sofis-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--sofis-shadow-sm);
+  transition: var(--sofis-transition);
+}
+
+.antes-depois__card:hover {
+  box-shadow: var(--sofis-shadow-lg);
+  transform: translateY(-4px);
+}
+
+.antes-depois__image-container {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.antes-depois__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.antes-depois__caption {
+  padding: var(--sofis-space-4);
+  text-align: center;
+  font-size: var(--sofis-text-sm);
+  color: var(--sofis-gray-700);
+  background: var(--sofis-gray-50);
+}
+
+/* ==========================================================================
+   12. BOTAO FLUTUANTE WHATSAPP
    ========================================================================== */
 
 .whatsapp-floating {
@@ -1344,6 +1468,7 @@ p {
   border-radius: var(--sofis-radius-full);
   box-shadow: var(--sofis-shadow-lg);
   transition: var(--sofis-transition);
+  text-decoration: none;
 }
 
 .whatsapp-floating a:hover {
@@ -1355,7 +1480,7 @@ p {
 .whatsapp-floating svg {
   width: 32px;
   height: 32px;
-  border-radius: var(--sofis-radius-full);
+  border-radius: 0;
 }
 
 @media (max-width: 680px) {
@@ -1377,8 +1502,75 @@ p {
 }
 
 /* ==========================================================================
-   15. UTILITARIOS
+   13. BOTOES GLOBAIS (Classes utilitarias)
    ========================================================================== */
+
+/* Botao primario - classe utilitaria */
+.sofis-btn--primary {
+  background: var(--sofis-primary);
+  color: var(--sofis-white);
+  padding: 14px 28px;
+  font-size: var(--sofis-text-lg);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--sofis-radius-lg);
+  box-shadow: var(--sofis-shadow-md);
+  transition: var(--sofis-transition);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sofis-space-2);
+}
+
+.sofis-btn--primary:hover {
+  background: var(--sofis-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--sofis-shadow-lg);
+  color: var(--sofis-white);
+}
+
+/* Botao secundario - classe utilitaria */
+.sofis-btn--secondary {
+  background: var(--sofis-primary-light);
+  color: var(--sofis-primary-dark);
+  padding: 12px 26px;
+  font-size: var(--sofis-text-base);
+  font-weight: 600;
+  border: 2px solid transparent;
+  border-radius: var(--sofis-radius-lg);
+  transition: var(--sofis-transition);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sofis-space-2);
+}
+
+.sofis-btn--secondary:hover {
+  background: var(--sofis-white);
+  border-color: var(--sofis-primary);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   14. UTILITARIOS
+   ========================================================================== */
+
+/* Container padrao para secoes SofisCare */
+.sofiscare-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--sofis-space-6);
+}
+
+@media screen and (min-width: 750px) {
+  .sofiscare-container {
+    padding: 0 var(--sofis-space-8);
+  }
+}
 
 /* Espacamento de secoes */
 .sofiscare-section-padding {
@@ -1409,29 +1601,11 @@ p {
   animation: sofis-fadeInUp 0.6s ease forwards;
 }
 
-/* CTA padrao */
-.sofis-cta {
-  text-align: center;
-  margin-top: var(--sofis-space-12);
-}
-
 /* ==========================================================================
-   16. MOBILE RESPONSIVE
+   15. RESPONSIVO MOBILE
    ========================================================================== */
 
 @media (max-width: 640px) {
-  h1 {
-    font-size: var(--sofis-text-3xl);
-  }
-
-  h2 {
-    font-size: var(--sofis-text-2xl);
-  }
-
-  h3 {
-    font-size: var(--sofis-text-xl);
-  }
-
   .hero-sofiscare {
     min-height: 70vh;
   }
@@ -1440,7 +1614,6 @@ p {
     padding: var(--sofis-space-8) var(--sofis-space-4);
   }
 
-  .sofis-card,
   .kit-vendido__card,
   .depoimentos__card,
   .faq-sofiscare__item {
@@ -1451,7 +1624,6 @@ p {
     padding: var(--sofis-space-6);
   }
 
-  .btn-primary,
   .sofis-btn--primary,
   .hero-sofiscare__cta--primary {
     padding: 12px 24px;
@@ -1460,7 +1632,7 @@ p {
 }
 
 /* ==========================================================================
-   17. PRINT STYLES
+   16. PRINT STYLES
    ========================================================================== */
 
 @media print {
@@ -1473,3 +1645,7 @@ p {
     background: none;
   }
 }
+
+/* ==========================================================================
+   FIM DO ARQUIVO
+   ========================================================================== */
