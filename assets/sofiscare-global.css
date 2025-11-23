@@ -1,0 +1,1287 @@
+/* ==========================================================================
+   SOFISCARE GLOBAL CSS
+   Arquivo de estilos globais da marca SofisCare
+   Versao: 1.0.0
+   ========================================================================== */
+
+/* ==========================================================================
+   1. VARIAVEIS CSS - BRAND TOKENS
+   ========================================================================== */
+
+:root {
+  /* Cores da marca SofisCare */
+  --sofis-primary: #2E7D5C;
+  --sofis-primary-dark: #1D5940;
+  --sofis-primary-light: #4A9D7C;
+  --sofis-secondary: #F5E6D3;
+  --sofis-accent: #D4A574;
+  --sofis-success: #10b981;
+  --sofis-warning: #fbbf24;
+  --sofis-error: #ef4444;
+
+  /* Cores neutras */
+  --sofis-white: #FFFFFF;
+  --sofis-gray-50: #F9FAFB;
+  --sofis-gray-100: #F3F4F6;
+  --sofis-gray-200: #E5E7EB;
+  --sofis-gray-300: #D1D5DB;
+  --sofis-gray-500: #6B7280;
+  --sofis-gray-700: #374151;
+  --sofis-gray-900: #111827;
+
+  /* Tipografia - Escala modular */
+  --sofis-font-display: 'Playfair Display', Georgia, serif;
+  --sofis-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Tamanhos de fonte (rem) */
+  --sofis-text-xs: 0.75rem;
+  --sofis-text-sm: 0.875rem;
+  --sofis-text-base: 1rem;
+  --sofis-text-lg: 1.125rem;
+  --sofis-text-xl: 1.25rem;
+  --sofis-text-2xl: 1.5rem;
+  --sofis-text-3xl: 1.875rem;
+  --sofis-text-4xl: 2.25rem;
+  --sofis-text-5xl: 3rem;
+  --sofis-text-6xl: 3.75rem;
+
+  /* Espacamentos (rem) */
+  --sofis-space-1: 0.25rem;
+  --sofis-space-2: 0.5rem;
+  --sofis-space-3: 0.75rem;
+  --sofis-space-4: 1rem;
+  --sofis-space-5: 1.25rem;
+  --sofis-space-6: 1.5rem;
+  --sofis-space-8: 2rem;
+  --sofis-space-10: 2.5rem;
+  --sofis-space-12: 3rem;
+  --sofis-space-16: 4rem;
+  --sofis-space-20: 5rem;
+  --sofis-space-24: 6rem;
+
+  /* Border radius */
+  --sofis-radius-sm: 4px;
+  --sofis-radius-md: 8px;
+  --sofis-radius-lg: 12px;
+  --sofis-radius-xl: 16px;
+  --sofis-radius-2xl: 20px;
+  --sofis-radius-full: 9999px;
+
+  /* Sombras */
+  --sofis-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --sofis-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --sofis-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --sofis-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --sofis-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* Transicoes */
+  --sofis-transition-fast: 150ms ease;
+  --sofis-transition-base: 250ms ease;
+  --sofis-transition-slow: 350ms ease;
+}
+
+/* ==========================================================================
+   2. RESET E BASE
+   ========================================================================== */
+
+.sofiscare-section * {
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   3. TIPOGRAFIA GLOBAL
+   ========================================================================== */
+
+/* Titulos da marca */
+.sofis-title,
+.hero-sofiscare__headline,
+.solucao-completa__title,
+.kit-vendido__title,
+.depoimentos__title,
+.faq-sofiscare__title,
+.garantia-sofiscare__title,
+.passos__title-wrapper .title,
+.porque__title-wrapper .title {
+  font-family: var(--sofis-font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: rgb(var(--color-foreground));
+}
+
+/* Corpo de texto */
+.sofis-body,
+.hero-sofiscare__subheadline,
+.solucao-completa__description,
+.kit-vendido__description,
+.depoimentos__subtitle,
+.faq-sofiscare__subtitle,
+.garantia-sofiscare__description {
+  font-family: var(--sofis-font-body);
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(var(--color-foreground), 0.85);
+}
+
+/* ==========================================================================
+   4. HERO SECTION - ESTILOS OTIMIZADOS
+   ========================================================================== */
+
+.hero-sofiscare {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 990px) {
+  .hero-sofiscare {
+    flex-direction: row;
+    min-height: 90vh;
+  }
+
+  .hero-sofiscare--reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.hero-sofiscare__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--sofis-space-12) var(--sofis-space-6);
+  text-align: center;
+}
+
+@media screen and (min-width: 750px) {
+  .hero-sofiscare__content {
+    padding: var(--sofis-space-16) var(--sofis-space-12);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .hero-sofiscare__content {
+    padding: var(--sofis-space-16);
+    max-width: 50%;
+  }
+
+  .hero-sofiscare__content--left {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .hero-sofiscare__content--center {
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-sofiscare__content--right {
+    text-align: right;
+    align-items: flex-end;
+  }
+}
+
+/* Badge do Hero */
+.hero-sofiscare__badge {
+  display: inline-block;
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  padding: var(--sofis-space-2) var(--sofis-space-4);
+  border-radius: var(--sofis-radius-full);
+  font-size: var(--sofis-text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--sofis-space-6);
+}
+
+/* Headline do Hero */
+.hero-sofiscare__headline {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: var(--sofis-space-6);
+}
+
+.hero-sofiscare__headline strong {
+  color: rgb(var(--color-button));
+}
+
+/* Subheadline do Hero */
+.hero-sofiscare__subheadline {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  margin-bottom: var(--sofis-space-8);
+  max-width: 540px;
+}
+
+@media screen and (min-width: 990px) {
+  .hero-sofiscare__content--center .hero-sofiscare__subheadline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* CTAs do Hero */
+.hero-sofiscare__ctas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sofis-space-4);
+  width: 100%;
+}
+
+@media screen and (min-width: 450px) {
+  .hero-sofiscare__ctas {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .hero-sofiscare__ctas {
+    justify-content: flex-start;
+  }
+
+  .hero-sofiscare__content--center .hero-sofiscare__ctas {
+    justify-content: center;
+  }
+
+  .hero-sofiscare__content--right .hero-sofiscare__ctas {
+    justify-content: flex-end;
+  }
+}
+
+.hero-sofiscare__cta {
+  padding: var(--sofis-space-4) var(--sofis-space-8);
+  font-size: var(--sofis-text-base);
+  font-weight: 600;
+  border-radius: var(--sofis-radius-md);
+  text-decoration: none;
+  transition: all var(--sofis-transition-base);
+  text-align: center;
+}
+
+.hero-sofiscare__cta--primary {
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  box-shadow: var(--sofis-shadow-md);
+}
+
+.hero-sofiscare__cta--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sofis-shadow-lg);
+  opacity: 0.95;
+}
+
+.hero-sofiscare__cta--secondary {
+  background: transparent;
+  border: 2px solid currentColor;
+  color: inherit;
+}
+
+.hero-sofiscare__cta--secondary:hover {
+  background: rgba(var(--color-foreground), 0.05);
+}
+
+/* Media do Hero */
+.hero-sofiscare__media {
+  flex: 1;
+  position: relative;
+  min-height: 300px;
+}
+
+@media screen and (min-width: 990px) {
+  .hero-sofiscare__media {
+    min-height: auto;
+    max-width: 50%;
+  }
+}
+
+.hero-sofiscare__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-sofiscare__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--color-background), 0.1) 0%,
+    rgba(var(--color-background), 0) 30%
+  );
+  pointer-events: none;
+}
+
+@media screen and (min-width: 990px) {
+  .hero-sofiscare__image-overlay {
+    background: linear-gradient(
+      to right,
+      rgba(var(--color-background), 0.15) 0%,
+      rgba(var(--color-background), 0) 20%
+    );
+  }
+
+  .hero-sofiscare--reverse .hero-sofiscare__image-overlay {
+    background: linear-gradient(
+      to left,
+      rgba(var(--color-background), 0.15) 0%,
+      rgba(var(--color-background), 0) 20%
+    );
+  }
+}
+
+/* Trust badges do Hero */
+.hero-sofiscare__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sofis-space-6);
+  margin-top: var(--sofis-space-8);
+  justify-content: center;
+  opacity: 0.7;
+  font-size: var(--sofis-text-sm);
+}
+
+@media screen and (min-width: 990px) {
+  .hero-sofiscare__trust {
+    justify-content: flex-start;
+  }
+
+  .hero-sofiscare__content--center .hero-sofiscare__trust {
+    justify-content: center;
+  }
+}
+
+.hero-sofiscare__trust-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sofis-space-2);
+}
+
+.hero-sofiscare__trust-icon {
+  font-size: 1.25rem;
+}
+
+/* Hero Fullwidth variant */
+.hero-sofiscare--fullwidth {
+  position: relative;
+}
+
+.hero-sofiscare--fullwidth .hero-sofiscare__media {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+}
+
+.hero-sofiscare--fullwidth .hero-sofiscare__content {
+  position: relative;
+  z-index: 1;
+  max-width: none;
+  background: rgba(var(--color-background), 0.7);
+}
+
+@media screen and (min-width: 990px) {
+  .hero-sofiscare--fullwidth .hero-sofiscare__content {
+    max-width: 600px;
+    margin: 0 auto;
+    background: transparent;
+  }
+}
+
+/* ==========================================================================
+   5. SOLUCAO COMPLETA SECTION
+   ========================================================================== */
+
+.solucao-completa__header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--sofis-space-12);
+}
+
+.solucao-completa__title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: var(--sofis-space-4);
+}
+
+.solucao-completa__description {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+}
+
+.solucao-completa__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sofis-space-6);
+}
+
+@media screen and (min-width: 550px) {
+  .solucao-completa__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .solucao-completa__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sofis-space-8);
+  }
+}
+
+.solucao-completa__card {
+  background: var(--gradient-background);
+  border-radius: var(--sofis-radius-xl);
+  padding: var(--sofis-space-8);
+  text-align: center;
+  transition: transform var(--sofis-transition-base), box-shadow var(--sofis-transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.solucao-completa__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgb(var(--color-button));
+  opacity: 0;
+  transition: opacity var(--sofis-transition-base);
+}
+
+.solucao-completa__card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sofis-shadow-xl);
+}
+
+.solucao-completa__card:hover::before {
+  opacity: 1;
+}
+
+.solucao-completa__icon {
+  font-size: 3rem;
+  margin-bottom: var(--sofis-space-4);
+  display: block;
+  line-height: 1;
+}
+
+.solucao-completa__card-title {
+  font-size: var(--sofis-text-lg);
+  font-weight: 600;
+  margin-bottom: var(--sofis-space-2);
+  line-height: 1.3;
+}
+
+.solucao-completa__card-text {
+  font-size: var(--sofis-text-sm);
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   6. KIT MAIS VENDIDO SECTION
+   ========================================================================== */
+
+.kit-vendido__header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--sofis-space-12);
+}
+
+.kit-vendido__badge {
+  display: inline-block;
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  padding: var(--sofis-space-2) var(--sofis-space-4);
+  border-radius: var(--sofis-radius-full);
+  font-size: var(--sofis-text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--sofis-space-4);
+}
+
+.kit-vendido__title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: var(--sofis-space-4);
+}
+
+.kit-vendido__description {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+}
+
+.kit-vendido__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sofis-space-6);
+  align-items: stretch;
+}
+
+@media screen and (min-width: 550px) {
+  .kit-vendido__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .kit-vendido__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sofis-space-8);
+  }
+}
+
+.kit-vendido__card {
+  background: var(--gradient-background);
+  border-radius: var(--sofis-radius-xl);
+  padding: var(--sofis-space-8);
+  text-align: center;
+  transition: transform var(--sofis-transition-base), box-shadow var(--sofis-transition-base);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.kit-vendido__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sofis-shadow-lg);
+}
+
+.kit-vendido__card--combo {
+  background: linear-gradient(135deg, rgba(var(--color-button), 0.08) 0%, rgba(var(--color-button), 0.02) 100%);
+  border: 2px solid rgb(var(--color-button));
+}
+
+.kit-vendido__card--combo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgb(var(--color-button));
+}
+
+@media screen and (min-width: 550px) and (max-width: 989px) {
+  .kit-vendido__card--combo {
+    grid-column: span 2;
+  }
+}
+
+.kit-vendido__combo-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  padding: var(--sofis-space-1) var(--sofis-space-3);
+  border-radius: var(--sofis-radius-sm);
+  font-size: var(--sofis-text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.kit-vendido__price {
+  font-size: var(--sofis-text-2xl);
+  font-weight: 700;
+  color: rgb(var(--color-button));
+}
+
+.kit-vendido__card--combo .kit-vendido__price {
+  font-size: var(--sofis-text-4xl);
+}
+
+.kit-vendido__price-old {
+  font-size: var(--sofis-text-base);
+  text-decoration: line-through;
+  opacity: 0.5;
+  margin-right: var(--sofis-space-2);
+}
+
+.kit-vendido__savings {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--sofis-success);
+  padding: var(--sofis-space-1) var(--sofis-space-3);
+  border-radius: var(--sofis-radius-sm);
+  font-size: var(--sofis-text-sm);
+  font-weight: 600;
+  margin-top: var(--sofis-space-2);
+}
+
+/* ==========================================================================
+   7. DEPOIMENTOS SECTION
+   ========================================================================== */
+
+.depoimentos__header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--sofis-space-12);
+}
+
+.depoimentos__title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: var(--sofis-space-4);
+}
+
+.depoimentos__subtitle {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  opacity: 0.8;
+}
+
+.depoimentos__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sofis-space-6);
+}
+
+@media screen and (min-width: 750px) {
+  .depoimentos__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sofis-space-8);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .depoimentos__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.depoimentos__card {
+  background: var(--gradient-background);
+  border-radius: var(--sofis-radius-xl);
+  padding: var(--sofis-space-8);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--sofis-transition-base), box-shadow var(--sofis-transition-base);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.depoimentos__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sofis-shadow-xl);
+}
+
+.depoimentos__quote-icon {
+  position: absolute;
+  top: var(--sofis-space-4);
+  right: var(--sofis-space-6);
+  font-size: 4rem;
+  line-height: 1;
+  opacity: 0.08;
+  font-family: Georgia, serif;
+  color: rgb(var(--color-foreground));
+  pointer-events: none;
+}
+
+.depoimentos__stars {
+  display: flex;
+  gap: var(--sofis-space-1);
+  margin-bottom: var(--sofis-space-4);
+}
+
+.depoimentos__star {
+  font-size: var(--sofis-text-lg);
+  color: var(--sofis-warning);
+}
+
+.depoimentos__star--empty {
+  color: rgba(var(--color-foreground), 0.2);
+}
+
+.depoimentos__text {
+  font-size: var(--sofis-text-base);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: var(--sofis-space-6);
+  flex-grow: 1;
+}
+
+.depoimentos__author {
+  display: flex;
+  align-items: center;
+  gap: var(--sofis-space-4);
+  margin-top: auto;
+  padding-top: var(--sofis-space-4);
+  border-top: 1px solid rgba(var(--color-foreground), 0.1);
+}
+
+.depoimentos__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--sofis-radius-full);
+  overflow: hidden;
+  background: rgba(var(--color-button), 0.1);
+  flex-shrink: 0;
+}
+
+.depoimentos__author-name {
+  font-weight: 600;
+  font-size: var(--sofis-text-sm);
+}
+
+.depoimentos__verified {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sofis-space-1);
+  font-size: var(--sofis-text-xs);
+  color: var(--sofis-success);
+  margin-top: var(--sofis-space-1);
+}
+
+/* ==========================================================================
+   8. FAQ SECTION
+   ========================================================================== */
+
+.faq-sofiscare {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-sofiscare__header {
+  text-align: center;
+  margin-bottom: var(--sofis-space-10);
+}
+
+.faq-sofiscare__title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: var(--sofis-space-3);
+}
+
+.faq-sofiscare__subtitle {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  opacity: 0.75;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.faq-sofiscare__item {
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
+}
+
+.faq-sofiscare__item:first-child {
+  border-top: 1px solid rgba(var(--color-foreground), 0.1);
+}
+
+.faq-sofiscare__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sofis-space-4);
+  padding: var(--sofis-space-5) 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: var(--sofis-text-base);
+  font-weight: 600;
+  line-height: 1.4;
+  color: rgb(var(--color-foreground));
+  transition: color var(--sofis-transition-fast);
+}
+
+.faq-sofiscare__trigger:hover {
+  color: rgb(var(--color-button));
+}
+
+.faq-sofiscare__icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.faq-sofiscare__icon::before,
+.faq-sofiscare__icon::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--sofis-transition-base), opacity var(--sofis-transition-base);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.faq-sofiscare__icon::before {
+  width: 14px;
+  height: 2px;
+}
+
+.faq-sofiscare__icon::after {
+  width: 2px;
+  height: 14px;
+}
+
+.faq-sofiscare__item.is-open .faq-sofiscare__icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 0;
+}
+
+.faq-sofiscare__item.is-open .faq-sofiscare__trigger {
+  color: rgb(var(--color-button));
+}
+
+.faq-sofiscare__content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--sofis-transition-slow), opacity var(--sofis-transition-slow);
+  opacity: 0;
+}
+
+.faq-sofiscare__item.is-open .faq-sofiscare__content {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.faq-sofiscare__content-inner {
+  overflow: hidden;
+}
+
+.faq-sofiscare__answer {
+  padding: 0 0 var(--sofis-space-6) 0;
+  font-size: var(--sofis-text-sm);
+  line-height: 1.7;
+  color: rgba(var(--color-foreground), 0.8);
+}
+
+/* ==========================================================================
+   9. GARANTIA SECTION
+   ========================================================================== */
+
+.garantia-sofiscare {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  padding: var(--sofis-space-10) var(--sofis-space-8);
+  border-radius: var(--sofis-radius-2xl);
+  position: relative;
+  transition: transform var(--sofis-transition-base), box-shadow var(--sofis-transition-base);
+}
+
+.garantia-sofiscare:hover {
+  transform: scale(1.01);
+}
+
+.garantia-sofiscare--bordered {
+  border: 2px solid rgba(var(--color-foreground), 0.1);
+  box-shadow: var(--sofis-shadow-md);
+}
+
+.garantia-sofiscare--bordered:hover {
+  box-shadow: var(--sofis-shadow-xl);
+}
+
+.garantia-sofiscare__badge {
+  display: inline-block;
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  padding: var(--sofis-space-2) var(--sofis-space-5);
+  border-radius: var(--sofis-radius-full);
+  font-size: var(--sofis-text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--sofis-space-6);
+}
+
+.garantia-sofiscare__icon {
+  font-size: 4rem;
+  line-height: 1;
+  display: inline-block;
+  margin-bottom: var(--sofis-space-6);
+  animation: pulse-gentle 3s ease-in-out infinite;
+}
+
+@media screen and (min-width: 750px) {
+  .garantia-sofiscare__icon {
+    font-size: 5rem;
+  }
+}
+
+.garantia-sofiscare__shield-svg {
+  width: 80px;
+  height: 80px;
+  color: rgb(var(--color-button));
+}
+
+@media screen and (min-width: 750px) {
+  .garantia-sofiscare__shield-svg {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.garantia-sofiscare__title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: var(--sofis-space-4);
+}
+
+.garantia-sofiscare__title strong {
+  color: rgb(var(--color-button));
+}
+
+.garantia-sofiscare__description {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  max-width: 580px;
+  margin: 0 auto var(--sofis-space-6);
+}
+
+.garantia-sofiscare__bullets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sofis-space-4) var(--sofis-space-8);
+  margin: var(--sofis-space-6) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.garantia-sofiscare__bullet {
+  display: flex;
+  align-items: center;
+  gap: var(--sofis-space-2);
+  font-size: var(--sofis-text-sm);
+  font-weight: 500;
+}
+
+.garantia-sofiscare__bullet-icon {
+  color: var(--sofis-success);
+  font-size: var(--sofis-text-lg);
+}
+
+.garantia-sofiscare__decoration {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: var(--sofis-success);
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--sofis-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--sofis-text-2xl);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+@media screen and (max-width: 749px) {
+  .garantia-sofiscare__decoration {
+    width: 50px;
+    height: 50px;
+    font-size: var(--sofis-text-xl);
+    top: -8px;
+    right: -8px;
+  }
+}
+
+/* ==========================================================================
+   10. PASSOS DO TRATAMENTO
+   ========================================================================== */
+
+.passos__title-wrapper {
+  text-align: center;
+  margin-bottom: var(--sofis-space-12);
+}
+
+.passos__container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sofis-space-8);
+}
+
+@media screen and (min-width: 750px) {
+  .passos__container {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+  }
+}
+
+.passos__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--sofis-space-8);
+  background: var(--gradient-background);
+  border-radius: var(--sofis-radius-lg);
+  position: relative;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 750px) {
+  .passos__item {
+    margin: 0;
+  }
+}
+
+.passos__numero {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--sofis-radius-full);
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--sofis-text-2xl);
+  font-weight: 700;
+  margin-bottom: var(--sofis-space-6);
+  flex-shrink: 0;
+}
+
+.passos__titulo {
+  font-size: var(--sofis-text-xl);
+  font-weight: 600;
+  margin-bottom: var(--sofis-space-3);
+}
+
+.passos__descricao {
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.passos__seta {
+  display: none;
+  font-size: 2rem;
+  color: rgb(var(--color-button));
+  align-self: center;
+  flex-shrink: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .passos__seta {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--sofis-space-4);
+  }
+}
+
+.passos__resultado {
+  margin-top: var(--sofis-space-12);
+  text-align: center;
+  padding: var(--sofis-space-8);
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  border-radius: var(--sofis-radius-lg);
+}
+
+.passos__resultado-titulo {
+  font-size: var(--sofis-text-2xl);
+  font-weight: 700;
+  margin-bottom: var(--sofis-space-2);
+}
+
+.passos__resultado-descricao {
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   11. POR QUE FUNCIONA
+   ========================================================================== */
+
+.porque__title-wrapper {
+  text-align: center;
+  margin-bottom: var(--sofis-space-12);
+}
+
+.porque__subtitle {
+  margin-top: var(--sofis-space-2);
+  opacity: 0.8;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.porque__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--sofis-space-6);
+}
+
+@media screen and (min-width: 990px) {
+  .porque__container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.porque__card {
+  background: var(--gradient-background);
+  border-radius: var(--sofis-radius-lg);
+  padding: var(--sofis-space-8);
+  text-align: center;
+  transition: transform var(--sofis-transition-base), box-shadow var(--sofis-transition-base);
+}
+
+.porque__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sofis-shadow-lg);
+}
+
+.porque__icon {
+  font-size: 3rem;
+  margin-bottom: var(--sofis-space-4);
+  display: block;
+}
+
+.porque__card-titulo {
+  font-size: var(--sofis-text-lg);
+  font-weight: 600;
+  margin-bottom: var(--sofis-space-2);
+}
+
+.porque__card-descricao {
+  opacity: 0.8;
+  font-size: var(--sofis-text-sm);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   12. BOTAO FLUTUANTE WHATSAPP
+   ========================================================================== */
+
+.whatsapp-floating {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 99999;
+}
+
+.whatsapp-floating a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  background: #25D366;
+  border-radius: var(--sofis-radius-full);
+  box-shadow: var(--sofis-shadow-lg);
+  transition: transform var(--sofis-transition-fast), box-shadow var(--sofis-transition-fast);
+}
+
+.whatsapp-floating a:hover {
+  transform: scale(1.08);
+  box-shadow: var(--sofis-shadow-xl);
+}
+
+.whatsapp-floating img,
+.whatsapp-floating svg {
+  width: 32px;
+  height: 32px;
+}
+
+@media (max-width: 680px) {
+  .whatsapp-floating a {
+    width: 52px;
+    height: 52px;
+  }
+
+  .whatsapp-floating img,
+  .whatsapp-floating svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* ==========================================================================
+   13. UTILITARIOS
+   ========================================================================== */
+
+/* Espacamento de secoes */
+.sofiscare-section-padding {
+  padding-top: var(--sofis-space-12);
+  padding-bottom: var(--sofis-space-12);
+}
+
+@media screen and (min-width: 750px) {
+  .sofiscare-section-padding {
+    padding-top: var(--sofis-space-16);
+    padding-bottom: var(--sofis-space-16);
+  }
+}
+
+/* Animacoes de entrada */
+@keyframes sofis-fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sofis-animate-in {
+  animation: sofis-fadeInUp 0.6s ease forwards;
+}
+
+/* Botoes padrao SofisCare */
+.sofis-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sofis-space-2);
+  padding: var(--sofis-space-4) var(--sofis-space-8);
+  font-family: var(--sofis-font-body);
+  font-size: var(--sofis-text-base);
+  font-weight: 600;
+  border-radius: var(--sofis-radius-md);
+  text-decoration: none;
+  transition: all var(--sofis-transition-base);
+  cursor: pointer;
+  border: none;
+}
+
+.sofis-btn--primary {
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  box-shadow: var(--sofis-shadow-md);
+}
+
+.sofis-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sofis-shadow-lg);
+}
+
+.sofis-btn--secondary {
+  background: transparent;
+  border: 2px solid rgb(var(--color-button));
+  color: rgb(var(--color-button));
+}
+
+.sofis-btn--secondary:hover {
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+}
+
+/* ==========================================================================
+   14. PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  .whatsapp-floating {
+    display: none !important;
+  }
+}

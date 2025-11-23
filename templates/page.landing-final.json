@@ -1,0 +1,442 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "badge": "Tratamento Completo",
+        "headline": "Pes macios e renovados em <strong>7 dias</strong>.",
+        "subheadline": "O tratamento completo que elimina rachaduras, diminui aspereza e devolve o toque sedoso aos seus pes - com resultado visivel ja nos primeiros 3 dias.",
+        "cta_primary_text": "Comprar o Kit SofisCare",
+        "cta_primary_link": "",
+        "cta_secondary_text": "Ver produtos separadamente",
+        "cta_secondary_link": "",
+        "layout": "content_first",
+        "desktop_text_alignment": "left",
+        "show_trust_badges": true,
+        "color_scheme": "scheme-1",
+        "overlay_opacity": 40
+      },
+      "blocks": {
+        "trust_1": {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "checkmark",
+            "text": "Frete gratis"
+          }
+        },
+        "trust_2": {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "lock",
+            "text": "Compra segura"
+          }
+        },
+        "trust_3": {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "return",
+            "text": "7 dias de garantia"
+          }
+        }
+      },
+      "block_order": ["trust_1", "trust_2", "trust_3"]
+    },
+    "solucao-completa": {
+      "type": "solucao-comp",
+      "settings": {
+        "title": "Seu tratamento comeca aqui.",
+        "description": "O combo SofisCare combina o poder do Renova Pe, que remove impurezas e celulas mortas, com o Hidraseda, que amacia, nutre e suaviza rachaduras - criando uma rotina simples, rapida e extremamente eficaz.",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "highlight_alternate": false,
+        "color_scheme": "scheme-1",
+        "button_label": "",
+        "button_link": "",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit_card",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Pes lisos e sedosos em ate 3 dias"
+          }
+        },
+        "benefit_2": {
+          "type": "benefit_card",
+          "settings": {
+            "icon": "soap",
+            "title": "Diminui aspereza e remove pele morta"
+          }
+        },
+        "benefit_3": {
+          "type": "benefit_card",
+          "settings": {
+            "icon": "droplet",
+            "title": "Hidratacao intensa e toque sedoso"
+          }
+        },
+        "benefit_4": {
+          "type": "benefit_card",
+          "settings": {
+            "icon": "muscle",
+            "title": "Suaviza rachaduras profundas"
+          }
+        },
+        "benefit_5": {
+          "type": "benefit_card",
+          "settings": {
+            "icon": "microscope",
+            "title": "Formula profissional, ideal para podologas"
+          }
+        }
+      },
+      "block_order": ["benefit_1", "benefit_2", "benefit_3", "benefit_4", "benefit_5"]
+    },
+    "kit-mais-vendido": {
+      "type": "kit-vendido",
+      "settings": {
+        "badge": "Mais Vendido",
+        "title": "O Kit SofisCare e o mais escolhido por quem quer resultado rapido.",
+        "description": "Use os dois produtos juntos e tenha pes macios, lisos e renovados de forma mais eficiente - e com desconto exclusivo.",
+        "heading_size": "h1",
+        "show_price": true,
+        "cta_label": "Comprar Kit SofisCare",
+        "cta_link": "",
+        "cta_subtext": "Frete gratis para todo o Brasil",
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "produto_1": {
+          "type": "product_card",
+          "settings": {
+            "icon": "soap",
+            "title": "Renova Pe - Esfoliante",
+            "bullet_1": "Remove celulas mortas",
+            "bullet_2": "Reduz aspereza",
+            "bullet_3": "Deixa o pe pronto para o hidratante",
+            "price": "R$ 69",
+            "button_label": "Ver produto"
+          }
+        },
+        "produto_2": {
+          "type": "product_card",
+          "settings": {
+            "icon": "droplet",
+            "title": "Hidraseda - Creme Hidratante",
+            "bullet_1": "Amacia a pele dura",
+            "bullet_2": "Suaviza rachaduras",
+            "bullet_3": "Nutre profundamente",
+            "price": "R$ 89",
+            "button_label": "Ver produto"
+          }
+        },
+        "combo": {
+          "type": "combo_card",
+          "settings": {
+            "combo_badge": "Economize",
+            "icon": "star",
+            "title": "Combo SofisCare",
+            "text": "Compre junto e economize - resultados mais rapidos e eficientes.",
+            "bullet_1": "Renova Pe + Hidraseda",
+            "bullet_2": "Resultado em ate 3 dias",
+            "bullet_3": "Desconto exclusivo",
+            "price": "R$ 119",
+            "price_old": "R$ 158",
+            "savings_text": "Economize R$ 39",
+            "button_label": "Comprar combo"
+          }
+        }
+      },
+      "block_order": ["produto_1", "produto_2", "combo"]
+    },
+    "passos-tratamento": {
+      "type": "passos",
+      "settings": {
+        "title": "Como funciona o tratamento",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "passo_1": {
+          "type": "passo",
+          "settings": {
+            "icon": "soap",
+            "titulo": "Passo 1 - Renova Pe",
+            "descricao": "Remove celulas mortas e reduz aspereza."
+          }
+        },
+        "passo_2": {
+          "type": "passo",
+          "settings": {
+            "icon": "droplet",
+            "titulo": "Passo 2 - Hidraseda",
+            "descricao": "Nutre profundamente, suaviza rachaduras e devolve maciez."
+          }
+        },
+        "resultado": {
+          "type": "resultado",
+          "settings": {
+            "titulo": "Resultado",
+            "descricao": "Pes visivelmente mais macios, lisos e renovados."
+          }
+        }
+      },
+      "block_order": ["passo_1", "passo_2", "resultado"]
+    },
+    "antes-depois": {
+      "type": "antes-depois",
+      "settings": {
+        "title": "Transformacoes reais com SofisCare",
+        "subtitle": "Resultados comecam a aparecer nos primeiros dias de uso.",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "comparacao_1": {
+          "type": "comparacao",
+          "settings": {
+            "caption": "Resultado apos 7 dias de uso"
+          }
+        },
+        "comparacao_2": {
+          "type": "comparacao",
+          "settings": {
+            "caption": "Transformacao em 5 dias"
+          }
+        },
+        "comparacao_3": {
+          "type": "comparacao",
+          "settings": {
+            "caption": "Melhora visivel em 3 dias"
+          }
+        }
+      },
+      "block_order": ["comparacao_1", "comparacao_2", "comparacao_3"]
+    },
+    "porque-funciona": {
+      "type": "pqfunciona",
+      "settings": {
+        "title": "Por que funciona?",
+        "subtitle": "",
+        "heading_size": "h1",
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "button_label": "",
+        "button_link": "",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "icon": "plant",
+            "titulo": "Formulas profissionais",
+            "descricao": "Desenvolvido com ingredientes de alta qualidade usados por especialistas."
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "icon": "microscope",
+            "titulo": "Atua nas camadas da pele",
+            "descricao": "Penetracao profunda para resultados visiveis e duradouros."
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "icon": "lightning",
+            "titulo": "Resultados rapidos",
+            "descricao": "Melhora visivel em apenas 3 dias de uso continuo."
+          }
+        },
+        "card_4": {
+          "type": "card",
+          "settings": {
+            "icon": "heart",
+            "titulo": "Rotina simples",
+            "descricao": "Apenas 2 passos para pes renovados - facil de manter."
+          }
+        }
+      },
+      "block_order": ["card_1", "card_2", "card_3", "card_4"]
+    },
+    "depoimentos": {
+      "type": "depoimentos",
+      "settings": {
+        "title": "O que dizem sobre o SofisCare",
+        "subtitle": "Resultados reais de pessoas que transformaram a saude dos seus pes.",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "show_carousel": false,
+        "show_stars": true,
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "depoimento_1": {
+          "type": "testimonial",
+          "settings": {
+            "text": "Em 3 dias ja senti meu pe mais liso. O creme e surreal!",
+            "rating": 5,
+            "name": "Maria F.",
+            "age": "42",
+            "verified": true
+          }
+        },
+        "depoimento_2": {
+          "type": "testimonial",
+          "settings": {
+            "text": "Sou podologa e recomendo para clientes com rachaduras. Funciona demais.",
+            "rating": 5,
+            "name": "Ana P.",
+            "profession": "Podologa",
+            "location": "SP",
+            "verified": true
+          }
+        },
+        "depoimento_3": {
+          "type": "testimonial",
+          "settings": {
+            "text": "Usei o kit por uma semana... parecia pe de bebe. Impressionada!",
+            "rating": 5,
+            "name": "Juliana R.",
+            "age": "36",
+            "verified": true
+          }
+        }
+      },
+      "block_order": ["depoimento_1", "depoimento_2", "depoimento_3"]
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {
+        "title": "Perguntas Frequentes",
+        "subtitle": "Tire suas duvidas sobre o tratamento SofisCare.",
+        "heading_size": "h1",
+        "open_first": true,
+        "allow_multiple": false,
+        "show_divider": true,
+        "highlight_box": false,
+        "color_scheme": "scheme-1",
+        "cta_text": "Ainda tem duvidas?",
+        "cta_label": "Fale conosco",
+        "cta_link": "",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "question",
+          "settings": {
+            "question": "Em quanto tempo vejo resultado?",
+            "answer": "<p>A maioria das pessoas percebe melhora em <strong>3 dias</strong>, com resultado completo em ate <strong>7 dias</strong>.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "question",
+          "settings": {
+            "question": "O kit e melhor que comprar separado?",
+            "answer": "<p>Sim. O esfoliante <strong>Renova Pe</strong> aumenta a absorcao do creme <strong>Hidraseda</strong>, entregando resultado mais rapido e eficiente.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "question",
+          "settings": {
+            "question": "Quantas vezes por semana devo usar?",
+            "answer": "<p><strong>Renova Pe:</strong> 2 a 3 vezes por semana.</p><p><strong>Hidraseda:</strong> todos os dias, preferencialmente a noite.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "question",
+          "settings": {
+            "question": "Ajuda em rachaduras profundas?",
+            "answer": "<p>Sim, suaviza a aspereza e melhora significativamente a textura da pele com uso continuo. Para rachaduras muito profundas, recomendamos tambem consultar um podologo.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "question",
+          "settings": {
+            "question": "Gestantes podem usar?",
+            "answer": "<p>Recomendamos consultar um medico antes de usar durante a gestacao. A composicao e suave, mas cada gravidez e unica.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"]
+    },
+    "garantia": {
+      "type": "garantia",
+      "settings": {
+        "badge_text": "Compra Segura",
+        "title": "Garantia SofisCare <strong>7 Dias</strong>",
+        "description": "Se voce nao perceber melhora real na hidratacao, maciez e no toque dos seus pes dentro de 7 dias, devolvemos 100% do seu dinheiro - sem burocracia e sem perguntas.",
+        "heading_size": "h1",
+        "icon_emoji": "shield",
+        "show_shield_svg": true,
+        "show_bullets": true,
+        "show_border": true,
+        "highlight_box": false,
+        "show_days_badge": true,
+        "show_trust_badges": false,
+        "color_scheme": "scheme-1",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "bullet_1": {
+          "type": "bullet",
+          "settings": {
+            "icon": "checkmark",
+            "text": "Sem risco"
+          }
+        },
+        "bullet_2": {
+          "type": "bullet",
+          "settings": {
+            "icon": "checkmark",
+            "text": "Processo simples"
+          }
+        },
+        "bullet_3": {
+          "type": "bullet",
+          "settings": {
+            "icon": "checkmark",
+            "text": "Atendimento humano"
+          }
+        }
+      },
+      "block_order": ["bullet_1", "bullet_2", "bullet_3"]
+    },
+    "whatsapp-button": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"whatsapp-floating\">\n  <a href=\"https://wa.me/5511999999999?text=Quero+saber+mais+sobre+o+SofisCare\" \n     target=\"_blank\" \n     rel=\"noopener noreferrer\"\n     aria-label=\"WhatsApp SofisCare\">\n    <img src=\"https://cdn-icons-png.flaticon.com/512/124/124034.png\" alt=\"WhatsApp\" loading=\"lazy\" />\n  </a>\n</div>\n\n<style>\n.whatsapp-floating {\n  position: fixed;\n  bottom: 18px;\n  right: 18px;\n  z-index: 99999;\n}\n.whatsapp-floating img {\n  width: 58px;\n  height: 58px;\n  border-radius: 50%;\n  box-shadow: 0 4px 14px rgba(0,0,0,0.25);\n  transition: transform .25s ease, box-shadow .25s ease;\n}\n.whatsapp-floating img:hover {\n  transform: scale(1.08);\n  box-shadow: 0 6px 18px rgba(0,0,0,0.30);\n}\n@media(max-width: 680px) {\n  .whatsapp-floating img {\n    width: 52px;\n    height: 52px;\n  }\n}\n</style>"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "solucao-completa",
+    "kit-mais-vendido",
+    "passos-tratamento",
+    "antes-depois",
+    "porque-funciona",
+    "depoimentos",
+    "faq",
+    "garantia",
+    "whatsapp-button"
+  ]
+}
