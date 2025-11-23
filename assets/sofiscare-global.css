@@ -1,51 +1,51 @@
 /* ==========================================================================
-   SOFISCARE GLOBAL CSS
-   Arquivo de estilos globais da marca SofisCare
-   Versao: 1.0.0
+   SOFISCARE DESIGN SYSTEM - CSS GLOBAL OFICIAL
+   Versao: 2.0.0
+   Paleta: Roxo Lavanda Premium
    ========================================================================== */
 
 /* ==========================================================================
-   1. VARIAVEIS CSS - BRAND TOKENS
+   1. VARIAVEIS DA MARCA (PALETA OFICIAL)
    ========================================================================== */
 
 :root {
-  /* Cores da marca SofisCare */
-  --sofis-primary: #2E7D5C;
-  --sofis-primary-dark: #1D5940;
-  --sofis-primary-light: #4A9D7C;
-  --sofis-secondary: #F5E6D3;
-  --sofis-accent: #D4A574;
+  /* SofisCare - Cores oficiais */
+  --sofis-primary: #5A3A85;
+  --sofis-primary-dark: #2E1B47;
+  --sofis-primary-light: #C9B7E8;
+  --sofis-secondary: #FDFBF7;
+  --sofis-accent: #9B70C9;
+
+  /* Neutros */
+  --sofis-white: #FFFFFF;
+  --sofis-gray-50: #FAF9FB;
+  --sofis-gray-100: #F2F0F4;
+  --sofis-gray-300: #D9D6DF;
+  --sofis-gray-500: #6E6E6E;
+  --sofis-gray-700: #443C4F;
+  --sofis-gray-900: #262329;
+
+  /* Feedback */
   --sofis-success: #10b981;
-  --sofis-warning: #fbbf24;
+  --sofis-warning: #f59e0b;
   --sofis-error: #ef4444;
 
-  /* Cores neutras */
-  --sofis-white: #FFFFFF;
-  --sofis-gray-50: #F9FAFB;
-  --sofis-gray-100: #F3F4F6;
-  --sofis-gray-200: #E5E7EB;
-  --sofis-gray-300: #D1D5DB;
-  --sofis-gray-500: #6B7280;
-  --sofis-gray-700: #374151;
-  --sofis-gray-900: #111827;
-
-  /* Tipografia - Escala modular */
+  /* Tipografia */
   --sofis-font-display: 'Playfair Display', Georgia, serif;
   --sofis-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Tamanhos de fonte (rem) */
+  /* Tamanhos de fonte */
   --sofis-text-xs: 0.75rem;
   --sofis-text-sm: 0.875rem;
   --sofis-text-base: 1rem;
   --sofis-text-lg: 1.125rem;
   --sofis-text-xl: 1.25rem;
   --sofis-text-2xl: 1.5rem;
-  --sofis-text-3xl: 1.875rem;
-  --sofis-text-4xl: 2.25rem;
+  --sofis-text-3xl: 2rem;
+  --sofis-text-4xl: 2.5rem;
   --sofis-text-5xl: 3rem;
-  --sofis-text-6xl: 3.75rem;
 
-  /* Espacamentos (rem) */
+  /* Espacamentos */
   --sofis-space-1: 0.25rem;
   --sofis-space-2: 0.5rem;
   --sofis-space-3: 0.75rem;
@@ -59,24 +59,23 @@
   --sofis-space-20: 5rem;
   --sofis-space-24: 6rem;
 
-  /* Border radius */
-  --sofis-radius-sm: 4px;
-  --sofis-radius-md: 8px;
-  --sofis-radius-lg: 12px;
-  --sofis-radius-xl: 16px;
-  --sofis-radius-2xl: 20px;
+  /* Border Radius */
+  --sofis-radius-sm: 6px;
+  --sofis-radius-md: 10px;
+  --sofis-radius-lg: 16px;
+  --sofis-radius-xl: 22px;
+  --sofis-radius-2xl: 28px;
   --sofis-radius-full: 9999px;
 
-  /* Sombras */
-  --sofis-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --sofis-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --sofis-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --sofis-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --sofis-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  /* Sombras elegantes com tom roxo */
+  --sofis-shadow-sm: 0 4px 12px rgba(90, 58, 133, 0.08);
+  --sofis-shadow-md: 0 8px 20px rgba(90, 58, 133, 0.12);
+  --sofis-shadow-lg: 0 12px 32px rgba(90, 58, 133, 0.18);
+  --sofis-shadow-xl: 0 20px 40px rgba(90, 58, 133, 0.22);
 
   /* Transicoes */
+  --sofis-transition: 250ms ease;
   --sofis-transition-fast: 150ms ease;
-  --sofis-transition-base: 250ms ease;
   --sofis-transition-slow: 350ms ease;
 }
 
@@ -84,7 +83,9 @@
    2. RESET E BASE
    ========================================================================== */
 
-.sofiscare-section * {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -92,39 +93,109 @@
    3. TIPOGRAFIA GLOBAL
    ========================================================================== */
 
-/* Titulos da marca */
-.sofis-title,
-.hero-sofiscare__headline,
-.solucao-completa__title,
-.kit-vendido__title,
-.depoimentos__title,
-.faq-sofiscare__title,
-.garantia-sofiscare__title,
-.passos__title-wrapper .title,
-.porque__title-wrapper .title {
-  font-family: var(--sofis-font-display);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: rgb(var(--color-foreground));
+body {
+  font-family: var(--sofis-font-body);
+  color: var(--sofis-gray-900);
+  background-color: var(--sofis-secondary);
+  line-height: 1.6;
 }
 
-/* Corpo de texto */
-.sofis-body,
-.hero-sofiscare__subheadline,
-.solucao-completa__description,
-.kit-vendido__description,
-.depoimentos__subtitle,
-.faq-sofiscare__subtitle,
-.garantia-sofiscare__description {
-  font-family: var(--sofis-font-body);
-  font-weight: 400;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sofis-font-display);
+  letter-spacing: -0.5px;
+  color: var(--sofis-primary-dark);
+  line-height: 1.2;
+  margin: 0;
+}
+
+h1 { font-size: var(--sofis-text-5xl); }
+h2 { font-size: var(--sofis-text-4xl); }
+h3 { font-size: var(--sofis-text-3xl); }
+h4 { font-size: var(--sofis-text-2xl); }
+
+p {
+  color: var(--sofis-gray-700);
   line-height: 1.7;
-  color: rgba(var(--color-foreground), 0.85);
 }
 
 /* ==========================================================================
-   4. HERO SECTION - ESTILOS OTIMIZADOS
+   4. BOTOES GLOBAIS (UNIFICADOS)
+   ========================================================================== */
+
+.btn-primary,
+.sofis-btn--primary,
+.hero-sofiscare__cta--primary {
+  background: var(--sofis-primary);
+  color: var(--sofis-white);
+  padding: 14px 28px;
+  font-size: var(--sofis-text-lg);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--sofis-radius-lg);
+  box-shadow: var(--sofis-shadow-md);
+  transition: var(--sofis-transition);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sofis-space-2);
+}
+
+.btn-primary:hover,
+.sofis-btn--primary:hover,
+.hero-sofiscare__cta--primary:hover {
+  background: var(--sofis-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--sofis-shadow-lg);
+}
+
+.btn-secondary,
+.sofis-btn--secondary,
+.hero-sofiscare__cta--secondary {
+  background: var(--sofis-primary-light);
+  color: var(--sofis-primary-dark);
+  padding: 12px 26px;
+  font-size: var(--sofis-text-base);
+  font-weight: 600;
+  border: 2px solid transparent;
+  border-radius: var(--sofis-radius-lg);
+  transition: var(--sofis-transition);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sofis-space-2);
+}
+
+.btn-secondary:hover,
+.sofis-btn--secondary:hover,
+.hero-sofiscare__cta--secondary:hover {
+  background: var(--sofis-white);
+  border-color: var(--sofis-primary);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   5. CARTOES PADRAO (GLOBAL)
+   ========================================================================== */
+
+.sofis-card {
+  background: var(--sofis-white);
+  border-radius: var(--sofis-radius-lg);
+  padding: var(--sofis-space-6);
+  box-shadow: var(--sofis-shadow-sm);
+  transition: var(--sofis-transition);
+}
+
+.sofis-card:hover {
+  box-shadow: var(--sofis-shadow-md);
+  transform: translateY(-4px);
+}
+
+/* ==========================================================================
+   6. HERO SECTION
    ========================================================================== */
 
 .hero-sofiscare {
@@ -133,6 +204,11 @@
   min-height: 80vh;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--sofis-primary-light) 0%,
+    var(--sofis-secondary) 90%
+  );
 }
 
 @media screen and (min-width: 990px) {
@@ -186,32 +262,38 @@
 /* Badge do Hero */
 .hero-sofiscare__badge {
   display: inline-block;
-  background: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
+  background: var(--sofis-primary);
+  color: var(--sofis-white);
   padding: var(--sofis-space-2) var(--sofis-space-4);
   border-radius: var(--sofis-radius-full);
   font-size: var(--sofis-text-xs);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: var(--sofis-space-6);
+  box-shadow: var(--sofis-shadow-sm);
 }
 
 /* Headline do Hero */
 .hero-sofiscare__headline {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, var(--sofis-text-5xl));
+  font-family: var(--sofis-font-display);
+  color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-6);
+  line-height: 1.1;
 }
 
 .hero-sofiscare__headline strong {
-  color: rgb(var(--color-button));
+  color: var(--sofis-primary);
 }
 
 /* Subheadline do Hero */
 .hero-sofiscare__subheadline {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 2vw, var(--sofis-text-xl));
+  color: var(--sofis-gray-700);
   margin-bottom: var(--sofis-space-8);
   max-width: 540px;
+  line-height: 1.7;
 }
 
 @media screen and (min-width: 990px) {
@@ -252,35 +334,13 @@
 }
 
 .hero-sofiscare__cta {
-  padding: var(--sofis-space-4) var(--sofis-space-8);
-  font-size: var(--sofis-text-base);
+  padding: 14px 28px;
+  font-size: var(--sofis-text-lg);
   font-weight: 600;
-  border-radius: var(--sofis-radius-md);
+  border-radius: var(--sofis-radius-lg);
   text-decoration: none;
-  transition: all var(--sofis-transition-base);
+  transition: var(--sofis-transition);
   text-align: center;
-}
-
-.hero-sofiscare__cta--primary {
-  background: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
-  box-shadow: var(--sofis-shadow-md);
-}
-
-.hero-sofiscare__cta--primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--sofis-shadow-lg);
-  opacity: 0.95;
-}
-
-.hero-sofiscare__cta--secondary {
-  background: transparent;
-  border: 2px solid currentColor;
-  color: inherit;
-}
-
-.hero-sofiscare__cta--secondary:hover {
-  background: rgba(var(--color-foreground), 0.05);
 }
 
 /* Media do Hero */
@@ -310,8 +370,8 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(var(--color-background), 0.1) 0%,
-    rgba(var(--color-background), 0) 30%
+    rgba(253, 251, 247, 0.2) 0%,
+    rgba(253, 251, 247, 0) 30%
   );
   pointer-events: none;
 }
@@ -320,16 +380,16 @@
   .hero-sofiscare__image-overlay {
     background: linear-gradient(
       to right,
-      rgba(var(--color-background), 0.15) 0%,
-      rgba(var(--color-background), 0) 20%
+      rgba(201, 183, 232, 0.3) 0%,
+      rgba(253, 251, 247, 0) 25%
     );
   }
 
   .hero-sofiscare--reverse .hero-sofiscare__image-overlay {
     background: linear-gradient(
       to left,
-      rgba(var(--color-background), 0.15) 0%,
-      rgba(var(--color-background), 0) 20%
+      rgba(201, 183, 232, 0.3) 0%,
+      rgba(253, 251, 247, 0) 25%
     );
   }
 }
@@ -341,8 +401,8 @@
   gap: var(--sofis-space-6);
   margin-top: var(--sofis-space-8);
   justify-content: center;
-  opacity: 0.7;
   font-size: var(--sofis-text-sm);
+  color: var(--sofis-gray-700);
 }
 
 @media screen and (min-width: 990px) {
@@ -363,6 +423,7 @@
 
 .hero-sofiscare__trust-icon {
   font-size: 1.25rem;
+  color: var(--sofis-primary);
 }
 
 /* Hero Fullwidth variant */
@@ -380,7 +441,7 @@
   position: relative;
   z-index: 1;
   max-width: none;
-  background: rgba(var(--color-background), 0.7);
+  background: rgba(253, 251, 247, 0.85);
 }
 
 @media screen and (min-width: 990px) {
@@ -392,7 +453,7 @@
 }
 
 /* ==========================================================================
-   5. SOLUCAO COMPLETA SECTION
+   7. SOLUCAO COMPLETA SECTION
    ========================================================================== */
 
 .solucao-completa__header {
@@ -402,12 +463,14 @@
 }
 
 .solucao-completa__title {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.75rem, 4vw, var(--sofis-text-4xl));
+  color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-4);
 }
 
 .solucao-completa__description {
-  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-size: clamp(1rem, 2vw, var(--sofis-text-lg));
+  color: var(--sofis-gray-700);
 }
 
 .solucao-completa__grid {
@@ -430,13 +493,14 @@
 }
 
 .solucao-completa__card {
-  background: var(--gradient-background);
+  background: var(--sofis-white);
   border-radius: var(--sofis-radius-xl);
   padding: var(--sofis-space-8);
   text-align: center;
-  transition: transform var(--sofis-transition-base), box-shadow var(--sofis-transition-base);
+  transition: var(--sofis-transition);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--sofis-shadow-sm);
 }
 
 .solucao-completa__card::before {
@@ -446,14 +510,14 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: rgb(var(--color-button));
+  background: linear-gradient(90deg, var(--sofis-primary), var(--sofis-accent));
   opacity: 0;
-  transition: opacity var(--sofis-transition-base);
+  transition: var(--sofis-transition);
 }
 
 .solucao-completa__card:hover {
   transform: translateY(-6px);
-  box-shadow: var(--sofis-shadow-xl);
+  box-shadow: var(--sofis-shadow-lg);
 }
 
 .solucao-completa__card:hover::before {
@@ -470,18 +534,19 @@
 .solucao-completa__card-title {
   font-size: var(--sofis-text-lg);
   font-weight: 600;
+  color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-2);
   line-height: 1.3;
 }
 
 .solucao-completa__card-text {
   font-size: var(--sofis-text-sm);
-  opacity: 0.8;
+  color: var(--sofis-gray-500);
   line-height: 1.5;
 }
 
 /* ==========================================================================
-   6. KIT MAIS VENDIDO SECTION
+   8. KIT MAIS VENDIDO SECTION
    ========================================================================== */
 
 .kit-vendido__header {
@@ -492,8 +557,8 @@
 
 .kit-vendido__badge {
   display: inline-block;
-  background: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
+  background: linear-gradient(135deg, var(--sofis-primary), var(--sofis-accent));
+  color: var(--sofis-white);
   padding: var(--sofis-space-2) var(--sofis-space-4);
   border-radius: var(--sofis-radius-full);
   font-size: var(--sofis-text-xs);
@@ -501,15 +566,18 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: var(--sofis-space-4);
+  box-shadow: var(--sofis-shadow-sm);
 }
 
 .kit-vendido__title {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.75rem, 4vw, var(--sofis-text-4xl));
+  color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-4);
 }
 
 .kit-vendido__description {
-  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-size: clamp(1rem, 2vw, var(--sofis-text-lg));
+  color: var(--sofis-gray-700);
 }
 
 .kit-vendido__grid {
@@ -532,26 +600,29 @@
   }
 }
 
-.kit-vendido__card {
-  background: var(--gradient-background);
+.kit-vendido__card,
+.kit-card {
+  background: var(--sofis-white);
   border-radius: var(--sofis-radius-xl);
   padding: var(--sofis-space-8);
   text-align: center;
-  transition: transform var(--sofis-transition-base), box-shadow var(--sofis-transition-base);
+  transition: var(--sofis-transition);
   position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-shadow: var(--sofis-shadow-md);
 }
 
-.kit-vendido__card:hover {
+.kit-vendido__card:hover,
+.kit-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--sofis-shadow-lg);
 }
 
 .kit-vendido__card--combo {
-  background: linear-gradient(135deg, rgba(var(--color-button), 0.08) 0%, rgba(var(--color-button), 0.02) 100%);
-  border: 2px solid rgb(var(--color-button));
+  background: linear-gradient(135deg, rgba(90, 58, 133, 0.08) 0%, rgba(155, 112, 201, 0.05) 100%);
+  border: 2px solid var(--sofis-primary);
 }
 
 .kit-vendido__card--combo::before {
@@ -561,7 +632,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: rgb(var(--color-button));
+  background: linear-gradient(90deg, var(--sofis-primary), var(--sofis-accent));
 }
 
 @media screen and (min-width: 550px) and (max-width: 989px) {
@@ -574,8 +645,8 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  background: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
+  background: var(--sofis-accent);
+  color: var(--sofis-white);
   padding: var(--sofis-space-1) var(--sofis-space-3);
   border-radius: var(--sofis-radius-sm);
   font-size: var(--sofis-text-xs);
@@ -583,10 +654,18 @@
   text-transform: uppercase;
 }
 
-.kit-vendido__price {
-  font-size: var(--sofis-text-2xl);
+.kit-vendido__card-title {
+  font-size: var(--sofis-text-xl);
   font-weight: 700;
-  color: rgb(var(--color-button));
+  color: var(--sofis-primary-dark);
+  margin-bottom: var(--sofis-space-4);
+}
+
+.kit-vendido__price,
+.kit-price {
+  font-size: var(--sofis-text-3xl);
+  font-weight: 700;
+  color: var(--sofis-primary);
 }
 
 .kit-vendido__card--combo .kit-vendido__price {
@@ -596,7 +675,7 @@
 .kit-vendido__price-old {
   font-size: var(--sofis-text-base);
   text-decoration: line-through;
-  opacity: 0.5;
+  color: var(--sofis-gray-500);
   margin-right: var(--sofis-space-2);
 }
 
@@ -611,8 +690,32 @@
   margin-top: var(--sofis-space-2);
 }
 
+.kit-vendido__bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--sofis-space-6);
+  text-align: left;
+  flex-grow: 1;
+}
+
+.kit-vendido__bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sofis-space-2);
+  padding: var(--sofis-space-2) 0;
+  font-size: var(--sofis-text-sm);
+  line-height: 1.4;
+  color: var(--sofis-gray-700);
+}
+
+.kit-vendido__bullet-icon {
+  color: var(--sofis-primary);
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
 /* ==========================================================================
-   7. DEPOIMENTOS SECTION
+   9. DEPOIMENTOS SECTION
    ========================================================================== */
 
 .depoimentos__header {
@@ -622,13 +725,14 @@
 }
 
 .depoimentos__title {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.75rem, 4vw, var(--sofis-text-4xl));
+  color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-4);
 }
 
 .depoimentos__subtitle {
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  opacity: 0.8;
+  font-size: clamp(1rem, 2vw, var(--sofis-text-lg));
+  color: var(--sofis-gray-500);
 }
 
 .depoimentos__grid {
@@ -651,20 +755,21 @@
 }
 
 .depoimentos__card {
-  background: var(--gradient-background);
+  background: var(--sofis-white);
   border-radius: var(--sofis-radius-xl);
   padding: var(--sofis-space-8);
   position: relative;
   overflow: hidden;
-  transition: transform var(--sofis-transition-base), box-shadow var(--sofis-transition-base);
+  transition: var(--sofis-transition);
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-shadow: var(--sofis-shadow-sm);
 }
 
 .depoimentos__card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--sofis-shadow-xl);
+  box-shadow: var(--sofis-shadow-lg);
 }
 
 .depoimentos__quote-icon {
@@ -673,9 +778,9 @@
   right: var(--sofis-space-6);
   font-size: 4rem;
   line-height: 1;
-  opacity: 0.08;
+  opacity: 0.1;
   font-family: Georgia, serif;
-  color: rgb(var(--color-foreground));
+  color: var(--sofis-primary);
   pointer-events: none;
 }
 
@@ -691,13 +796,14 @@
 }
 
 .depoimentos__star--empty {
-  color: rgba(var(--color-foreground), 0.2);
+  color: var(--sofis-gray-300);
 }
 
 .depoimentos__text {
   font-size: var(--sofis-text-base);
   line-height: 1.7;
   font-style: italic;
+  color: var(--sofis-gray-700);
   margin-bottom: var(--sofis-space-6);
   flex-grow: 1;
 }
@@ -708,7 +814,7 @@
   gap: var(--sofis-space-4);
   margin-top: auto;
   padding-top: var(--sofis-space-4);
-  border-top: 1px solid rgba(var(--color-foreground), 0.1);
+  border-top: 1px solid var(--sofis-gray-100);
 }
 
 .depoimentos__avatar {
@@ -716,13 +822,25 @@
   height: 48px;
   border-radius: var(--sofis-radius-full);
   overflow: hidden;
-  background: rgba(var(--color-button), 0.1);
+  background: var(--sofis-primary-light);
   flex-shrink: 0;
+}
+
+.depoimentos__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .depoimentos__author-name {
   font-weight: 600;
   font-size: var(--sofis-text-sm);
+  color: var(--sofis-primary-dark);
+}
+
+.depoimentos__author-details {
+  font-size: var(--sofis-text-xs);
+  color: var(--sofis-gray-500);
 }
 
 .depoimentos__verified {
@@ -735,7 +853,7 @@
 }
 
 /* ==========================================================================
-   8. FAQ SECTION
+   10. FAQ SECTION
    ========================================================================== */
 
 .faq-sofiscare {
@@ -749,23 +867,36 @@
 }
 
 .faq-sofiscare__title {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.75rem, 4vw, var(--sofis-text-4xl));
+  color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-3);
 }
 
 .faq-sofiscare__subtitle {
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  opacity: 0.75;
+  font-size: clamp(1rem, 2vw, var(--sofis-text-lg));
+  color: var(--sofis-gray-500);
   max-width: 600px;
   margin: 0 auto;
 }
 
-.faq-sofiscare__item {
-  border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
+.faq-sofiscare__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sofis-space-4);
 }
 
-.faq-sofiscare__item:first-child {
-  border-top: 1px solid rgba(var(--color-foreground), 0.1);
+.faq-sofiscare__item,
+.faq-item {
+  background: var(--sofis-white);
+  padding: var(--sofis-space-4);
+  border-radius: var(--sofis-radius-md);
+  box-shadow: var(--sofis-shadow-sm);
+  transition: var(--sofis-transition);
+}
+
+.faq-sofiscare__item.is-open,
+.faq-item.open {
+  box-shadow: var(--sofis-shadow-md);
 }
 
 .faq-sofiscare__trigger {
@@ -774,21 +905,27 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--sofis-space-4);
-  padding: var(--sofis-space-5) 0;
+  padding: var(--sofis-space-2);
   background: none;
   border: none;
   cursor: pointer;
   text-align: left;
   font-family: inherit;
-  font-size: var(--sofis-text-base);
+  font-size: var(--sofis-text-lg);
   font-weight: 600;
   line-height: 1.4;
-  color: rgb(var(--color-foreground));
-  transition: color var(--sofis-transition-fast);
+  color: var(--sofis-primary-dark);
+  transition: var(--sofis-transition-fast);
+}
+
+.faq-question {
+  font-weight: 600;
+  font-size: var(--sofis-text-lg);
+  color: var(--sofis-primary-dark);
 }
 
 .faq-sofiscare__trigger:hover {
-  color: rgb(var(--color-button));
+  color: var(--sofis-primary);
 }
 
 .faq-sofiscare__icon {
@@ -802,9 +939,9 @@
 .faq-sofiscare__icon::after {
   content: '';
   position: absolute;
-  background: currentColor;
+  background: var(--sofis-primary);
   border-radius: 2px;
-  transition: transform var(--sofis-transition-base), opacity var(--sofis-transition-base);
+  transition: var(--sofis-transition);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -826,7 +963,7 @@
 }
 
 .faq-sofiscare__item.is-open .faq-sofiscare__trigger {
-  color: rgb(var(--color-button));
+  color: var(--sofis-primary);
 }
 
 .faq-sofiscare__content {
@@ -846,43 +983,39 @@
 }
 
 .faq-sofiscare__answer {
-  padding: 0 0 var(--sofis-space-6) 0;
+  padding: var(--sofis-space-2) var(--sofis-space-2) var(--sofis-space-4);
   font-size: var(--sofis-text-sm);
   line-height: 1.7;
-  color: rgba(var(--color-foreground), 0.8);
+  color: var(--sofis-gray-700);
 }
 
 /* ==========================================================================
-   9. GARANTIA SECTION
+   11. GARANTIA SECTION
    ========================================================================== */
 
-.garantia-sofiscare {
+.garantia-sofiscare,
+.garantia-box {
   max-width: 700px;
   margin: 0 auto;
   text-align: center;
   padding: var(--sofis-space-10) var(--sofis-space-8);
-  border-radius: var(--sofis-radius-2xl);
+  border-radius: var(--sofis-radius-xl);
   position: relative;
-  transition: transform var(--sofis-transition-base), box-shadow var(--sofis-transition-base);
+  transition: var(--sofis-transition);
+  background: var(--sofis-primary-light);
+  border: 2px solid var(--sofis-primary);
+  box-shadow: var(--sofis-shadow-md);
 }
 
 .garantia-sofiscare:hover {
   transform: scale(1.01);
-}
-
-.garantia-sofiscare--bordered {
-  border: 2px solid rgba(var(--color-foreground), 0.1);
-  box-shadow: var(--sofis-shadow-md);
-}
-
-.garantia-sofiscare--bordered:hover {
-  box-shadow: var(--sofis-shadow-xl);
+  box-shadow: var(--sofis-shadow-lg);
 }
 
 .garantia-sofiscare__badge {
   display: inline-block;
-  background: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
+  background: var(--sofis-primary);
+  color: var(--sofis-white);
   padding: var(--sofis-space-2) var(--sofis-space-5);
   border-radius: var(--sofis-radius-full);
   font-size: var(--sofis-text-xs);
@@ -892,11 +1025,14 @@
   margin-bottom: var(--sofis-space-6);
 }
 
+.garantia-sofiscare__icon-wrapper {
+  margin-bottom: var(--sofis-space-6);
+}
+
 .garantia-sofiscare__icon {
   font-size: 4rem;
   line-height: 1;
   display: inline-block;
-  margin-bottom: var(--sofis-space-6);
   animation: pulse-gentle 3s ease-in-out infinite;
 }
 
@@ -909,7 +1045,7 @@
 .garantia-sofiscare__shield-svg {
   width: 80px;
   height: 80px;
-  color: rgb(var(--color-button));
+  color: var(--sofis-primary);
 }
 
 @media screen and (min-width: 750px) {
@@ -929,16 +1065,18 @@
 }
 
 .garantia-sofiscare__title {
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(1.5rem, 4vw, var(--sofis-text-3xl));
+  color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-4);
 }
 
 .garantia-sofiscare__title strong {
-  color: rgb(var(--color-button));
+  color: var(--sofis-primary);
 }
 
 .garantia-sofiscare__description {
-  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-size: clamp(1rem, 2vw, var(--sofis-text-lg));
+  color: var(--sofis-gray-700);
   max-width: 580px;
   margin: 0 auto var(--sofis-space-6);
 }
@@ -959,6 +1097,7 @@
   gap: var(--sofis-space-2);
   font-size: var(--sofis-text-sm);
   font-weight: 500;
+  color: var(--sofis-primary-dark);
 }
 
 .garantia-sofiscare__bullet-icon {
@@ -970,8 +1109,8 @@
   position: absolute;
   top: -10px;
   right: -10px;
-  background: var(--sofis-success);
-  color: white;
+  background: var(--sofis-primary);
+  color: var(--sofis-white);
   width: 60px;
   height: 60px;
   border-radius: var(--sofis-radius-full);
@@ -980,7 +1119,7 @@
   justify-content: center;
   font-size: var(--sofis-text-2xl);
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  box-shadow: var(--sofis-shadow-md);
 }
 
 @media screen and (max-width: 749px) {
@@ -994,12 +1133,16 @@
 }
 
 /* ==========================================================================
-   10. PASSOS DO TRATAMENTO
+   12. PASSOS DO TRATAMENTO
    ========================================================================== */
 
 .passos__title-wrapper {
   text-align: center;
   margin-bottom: var(--sofis-space-12);
+}
+
+.passos__title-wrapper .title {
+  color: var(--sofis-primary-dark);
 }
 
 .passos__container {
@@ -1023,11 +1166,18 @@
   align-items: center;
   text-align: center;
   padding: var(--sofis-space-8);
-  background: var(--gradient-background);
+  background: var(--sofis-white);
   border-radius: var(--sofis-radius-lg);
   position: relative;
   max-width: 350px;
   margin: 0 auto;
+  box-shadow: var(--sofis-shadow-sm);
+  transition: var(--sofis-transition);
+}
+
+.passos__item:hover {
+  box-shadow: var(--sofis-shadow-md);
+  transform: translateY(-4px);
 }
 
 @media screen and (min-width: 750px) {
@@ -1040,8 +1190,8 @@
   width: 60px;
   height: 60px;
   border-radius: var(--sofis-radius-full);
-  background: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
+  background: linear-gradient(135deg, var(--sofis-primary), var(--sofis-accent));
+  color: var(--sofis-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1049,23 +1199,30 @@
   font-weight: 700;
   margin-bottom: var(--sofis-space-6);
   flex-shrink: 0;
+  box-shadow: var(--sofis-shadow-sm);
+}
+
+.passos__icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--sofis-space-4);
 }
 
 .passos__titulo {
   font-size: var(--sofis-text-xl);
   font-weight: 600;
+  color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-3);
 }
 
 .passos__descricao {
-  opacity: 0.85;
+  color: var(--sofis-gray-700);
   line-height: 1.6;
 }
 
 .passos__seta {
   display: none;
   font-size: 2rem;
-  color: rgb(var(--color-button));
+  color: var(--sofis-primary);
   align-self: center;
   flex-shrink: 0;
 }
@@ -1082,23 +1239,26 @@
   margin-top: var(--sofis-space-12);
   text-align: center;
   padding: var(--sofis-space-8);
-  background: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
+  background: linear-gradient(135deg, var(--sofis-primary), var(--sofis-accent));
+  color: var(--sofis-white);
   border-radius: var(--sofis-radius-lg);
+  box-shadow: var(--sofis-shadow-md);
 }
 
 .passos__resultado-titulo {
   font-size: var(--sofis-text-2xl);
   font-weight: 700;
   margin-bottom: var(--sofis-space-2);
+  color: var(--sofis-white);
 }
 
 .passos__resultado-descricao {
-  opacity: 0.9;
+  opacity: 0.95;
+  color: var(--sofis-white);
 }
 
 /* ==========================================================================
-   11. POR QUE FUNCIONA
+   13. POR QUE FUNCIONA
    ========================================================================== */
 
 .porque__title-wrapper {
@@ -1106,9 +1266,13 @@
   margin-bottom: var(--sofis-space-12);
 }
 
+.porque__title-wrapper .title {
+  color: var(--sofis-primary-dark);
+}
+
 .porque__subtitle {
   margin-top: var(--sofis-space-2);
-  opacity: 0.8;
+  color: var(--sofis-gray-500);
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -1127,11 +1291,12 @@
 }
 
 .porque__card {
-  background: var(--gradient-background);
+  background: var(--sofis-white);
   border-radius: var(--sofis-radius-lg);
   padding: var(--sofis-space-8);
   text-align: center;
-  transition: transform var(--sofis-transition-base), box-shadow var(--sofis-transition-base);
+  transition: var(--sofis-transition);
+  box-shadow: var(--sofis-shadow-sm);
 }
 
 .porque__card:hover {
@@ -1148,23 +1313,24 @@
 .porque__card-titulo {
   font-size: var(--sofis-text-lg);
   font-weight: 600;
+  color: var(--sofis-primary-dark);
   margin-bottom: var(--sofis-space-2);
 }
 
 .porque__card-descricao {
-  opacity: 0.8;
+  color: var(--sofis-gray-500);
   font-size: var(--sofis-text-sm);
   line-height: 1.5;
 }
 
 /* ==========================================================================
-   12. BOTAO FLUTUANTE WHATSAPP
+   14. BOTAO FLUTUANTE WHATSAPP
    ========================================================================== */
 
 .whatsapp-floating {
   position: fixed;
-  bottom: 18px;
-  right: 18px;
+  bottom: 20px;
+  right: 20px;
   z-index: 99999;
 }
 
@@ -1172,16 +1338,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 58px;
-  height: 58px;
+  width: 60px;
+  height: 60px;
   background: #25D366;
   border-radius: var(--sofis-radius-full);
   box-shadow: var(--sofis-shadow-lg);
-  transition: transform var(--sofis-transition-fast), box-shadow var(--sofis-transition-fast);
+  transition: var(--sofis-transition);
 }
 
 .whatsapp-floating a:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
   box-shadow: var(--sofis-shadow-xl);
 }
 
@@ -1189,12 +1355,18 @@
 .whatsapp-floating svg {
   width: 32px;
   height: 32px;
+  border-radius: var(--sofis-radius-full);
 }
 
 @media (max-width: 680px) {
+  .whatsapp-floating {
+    bottom: 16px;
+    right: 16px;
+  }
+
   .whatsapp-floating a {
-    width: 52px;
-    height: 52px;
+    width: 54px;
+    height: 54px;
   }
 
   .whatsapp-floating img,
@@ -1205,7 +1377,7 @@
 }
 
 /* ==========================================================================
-   13. UTILITARIOS
+   15. UTILITARIOS
    ========================================================================== */
 
 /* Espacamento de secoes */
@@ -1237,51 +1409,67 @@
   animation: sofis-fadeInUp 0.6s ease forwards;
 }
 
-/* Botoes padrao SofisCare */
-.sofis-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--sofis-space-2);
-  padding: var(--sofis-space-4) var(--sofis-space-8);
-  font-family: var(--sofis-font-body);
-  font-size: var(--sofis-text-base);
-  font-weight: 600;
-  border-radius: var(--sofis-radius-md);
-  text-decoration: none;
-  transition: all var(--sofis-transition-base);
-  cursor: pointer;
-  border: none;
-}
-
-.sofis-btn--primary {
-  background: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
-  box-shadow: var(--sofis-shadow-md);
-}
-
-.sofis-btn--primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--sofis-shadow-lg);
-}
-
-.sofis-btn--secondary {
-  background: transparent;
-  border: 2px solid rgb(var(--color-button));
-  color: rgb(var(--color-button));
-}
-
-.sofis-btn--secondary:hover {
-  background: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
+/* CTA padrao */
+.sofis-cta {
+  text-align: center;
+  margin-top: var(--sofis-space-12);
 }
 
 /* ==========================================================================
-   14. PRINT STYLES
+   16. MOBILE RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: var(--sofis-text-3xl);
+  }
+
+  h2 {
+    font-size: var(--sofis-text-2xl);
+  }
+
+  h3 {
+    font-size: var(--sofis-text-xl);
+  }
+
+  .hero-sofiscare {
+    min-height: 70vh;
+  }
+
+  .hero-sofiscare__content {
+    padding: var(--sofis-space-8) var(--sofis-space-4);
+  }
+
+  .sofis-card,
+  .kit-vendido__card,
+  .depoimentos__card,
+  .faq-sofiscare__item {
+    padding: var(--sofis-space-4);
+  }
+
+  .garantia-sofiscare {
+    padding: var(--sofis-space-6);
+  }
+
+  .btn-primary,
+  .sofis-btn--primary,
+  .hero-sofiscare__cta--primary {
+    padding: 12px 24px;
+    font-size: var(--sofis-text-base);
+  }
+}
+
+/* ==========================================================================
+   17. PRINT STYLES
    ========================================================================== */
 
 @media print {
   .whatsapp-floating {
     display: none !important;
+  }
+
+  .hero-sofiscare {
+    min-height: auto;
+    background: none;
   }
 }
